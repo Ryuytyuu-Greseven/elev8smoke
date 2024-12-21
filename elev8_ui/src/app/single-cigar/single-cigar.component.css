@@ -1,0 +1,37 @@
+/* .cigar-image {
+  width: 250px;
+  height: 250px;
+} */
+
+.card {
+  max-height: 350px;
+  /* Set a fixed height for all cards */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  max-height: 250px;
+  /* Fixed height for image */
+  object-fit: cover;
+  /* Ensures the image covers the area without distortion */
+}
+
+
+@media screen and (max-width: 1100px) {
+
+  .card {
+    max-height: 250px;
+    /* Set a fixed height for all cards */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-img-top {
+    max-height: 150px;
+    /* Fixed height for image */
+    object-fit: cover;
+    /* Ensures the image covers the area without distortion */
+  }
+
+}

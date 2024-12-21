@@ -1,1 +1,13 @@
-<p>dashboard-cigars works!</p>
+<div class="bg-dark m-4 rounded-2">
+  <div class="container-fluid ">
+    <div class="row">
+      <ng-container *ngFor="let cigar of allCigars">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-3 mb-4">
+          <app-single-cigar [cigarDetails]="cigar">
+
+          </app-single-cigar>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

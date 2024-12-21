@@ -1,1 +1,11 @@
-<p>single-cigar works!</p>
+<div class="card shadow-sm">
+  <img [src]="cigarDetails.img" class="card-img-top img-fluid cigar-image" alt="{{ cigarDetails.name }}">
+  <div class="card-body">
+    <h5 class="card-title">{{ cigarDetails.name }}</h5>
+    <!-- <p class="card-text">{{ cigarDetails.description }}</p> -->
+    <div class="d-flex justify-content-between">
+      <span class="text-muted">{{ cigarDetails.price }}$</span>
+      <span class="badge bg-info">{{ cigarDetails.quantity }} in stock</span>
+    </div>
+  </div>
+</div>
