@@ -1,13 +1,16 @@
 .corousal-height {
-  max-width: 1000px;
-  min-width: 1000px;
-  min-height: 800px;
-  max-height: 800px;
+  margin-left: 16%;
+  max-width: 1200px;
+  min-width: 1200px;
+  min-height: 600px;
+  max-height: 600px;
   overflow: hidden;
 }
 
 @media screen and (max-width: 1200px) {
   .corousal-height {
+    margin-left: 0%;
+
     min-width: 100%;
     min-height: 500px;
     max-height: 500px;
@@ -20,4 +23,3 @@ carousel-item img {
   height: 100%;
   object-fit: fill;
 }
-
