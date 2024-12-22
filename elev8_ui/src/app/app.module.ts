@@ -11,6 +11,7 @@ import { SingleCigarComponent } from './single-cigar/single-cigar.component';
 import { DashboardCigarsComponent } from './dashboard-cigars/dashboard-cigars.component';
 import { AdminComponent } from './admin/admin.component';
 import { AddProductsComponent } from './admin/add-products/add-products.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AddProductsComponent } from './admin/add-products/add-products.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
