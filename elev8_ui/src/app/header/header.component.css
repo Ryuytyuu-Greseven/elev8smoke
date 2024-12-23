@@ -1,21 +1,44 @@
+/* Adjust the logo styling */
+.logo-container img {
+  height: 80px; /* Increase size for better clarity */
+  width: auto;
+}
+
+/* Extreme left positioning */
+.logo-container {
+  margin-right: 20px; /* Add some spacing between the logo and navbar */
+}
+
+/* Rounded navbar design */
 .header-round {
-  border-radius: 50px 0% 0% 50px ;
+  border-radius: 50px;
 }
 
+/* Limit navbar width */
 .header-mw {
-  max-width: 80%;
+  max-width: 100%;
+  margin: 0 auto; /* Center-align */
+  display: flex; /* Ensure proper layout */
+  align-items: center; /* Vertically align items */
 }
 
-/* .smoke-1 {
-  content: "";
-  background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F40%2F03%2F80%2F400380e3f2f851a1adcf56cf0f803749.jpg&f=1&nofb=1&ipt=dae06f4c2e8f0b55ce8716fd43dd713a2cdcd52a60ead95cd3f937151642349c&ipo=images');
-  background-size: cover;
-  background-position: center;
-  transform: rotate(0deg);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 10%;
-  height: 50%;
-  z-index: -1;
-} */
+/* Navbar links styling */
+.navbar-nav .nav-link {
+  font-size: 16px;
+  padding: 10px 15px;
+}
+
+/* Responsive design for smaller devices */
+@media (max-width: 768px) {
+  .logo-container img {
+    height: 60px; /* Slightly smaller on mobile */
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 14px;
+  }
+
+  .header-mw {
+    flex-wrap: wrap; /* Adjust layout for smaller screens */
+  }
+}

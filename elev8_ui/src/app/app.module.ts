@@ -9,6 +9,9 @@ import { BodyComponent } from './body/body.component';
 import { CorouselComponent } from './corousel/corousel.component';
 import { SingleCigarComponent } from './single-cigar/single-cigar.component';
 import { DashboardCigarsComponent } from './dashboard-cigars/dashboard-cigars.component';
+import { AdminComponent } from './admin/admin.component';
+import { AddProductsComponent } from './admin/add-products/add-products.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,11 +21,14 @@ import { DashboardCigarsComponent } from './dashboard-cigars/dashboard-cigars.co
     BodyComponent,
     CorouselComponent,
     SingleCigarComponent,
-    DashboardCigarsComponent
+    DashboardCigarsComponent,
+    AdminComponent,
+    AddProductsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-<div id="imageCarousel" class="carousel slide corousal-height rounded-5" data-bs-ride="carousel">
+<div #imageCarousel id="imageCarousel" class="carousel slide corousal-height rounded-5" data-bs-ride="carousel">
   <div class="carousel-inner">
     <!-- Loop through images and create carousel items -->
     <div *ngFor="let image of images; let i = index" class="carousel-item" [class.active]="i === 0">
@@ -15,6 +15,6 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
-
 </div>
 
+<app-dashboard-cigars></app-dashboard-cigars>
