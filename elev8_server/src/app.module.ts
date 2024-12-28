@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { config } from 'dotenv';
 import { CategorySchema } from './schemas/Categories.schema';
 import { ItemSchema } from './schemas/Items.schema';
+import { UploadsService } from './uploads/uploads.service';
 
 config();
 @Module({
@@ -24,6 +25,6 @@ config();
     ]),
   ],
   controllers: [AppController, AdminController],
-  providers: [AppService, AdminService],
+  providers: [AppService, AdminService, UploadsService],
 })
 export class AppModule {}
