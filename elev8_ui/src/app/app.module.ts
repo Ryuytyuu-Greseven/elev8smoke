@@ -11,7 +11,9 @@ import { SingleCigarComponent } from './single-cigar/single-cigar.component';
 import { DashboardCigarsComponent } from './dashboard-cigars/dashboard-cigars.component';
 import { AdminComponent } from './admin/admin.component';
 import { AddProductsComponent } from './admin/add-products/add-products.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ViewCigarsComponent } from './view-cigars/view-cigars.component';
+import { ViewCigarComponent } from './view-cigars/view-cigar/view-cigar.component';
 
 @NgModule({
   declarations: [
@@ -23,11 +25,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     SingleCigarComponent,
     DashboardCigarsComponent,
     AdminComponent,
-    AddProductsComponent
+    AddProductsComponent,
+    ViewCigarsComponent,
+    ViewCigarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],
