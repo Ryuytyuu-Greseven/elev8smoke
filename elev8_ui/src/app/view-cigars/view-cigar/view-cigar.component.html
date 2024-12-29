@@ -1,0 +1,20 @@
+<div class="cigar-detail-container">
+    <!-- Image Section -->
+    <div class="image-section">
+      <img [src]="cigar.image" [alt]="cigar.name" />
+    </div>
+  
+    <!-- Details Section -->
+    <div class="details-section">
+      <h1>{{ cigar.name }}</h1>
+      <p><strong>Barcode number:</strong> {{ cigar.barcode }}</p>
+      <p><strong>Price:</strong> ${{ cigar.price }}</p>
+      <p><strong>Description:</strong> {{ cigar.description }}</p>
+      <p class="status">
+        <strong>Status:</strong>
+        <span *ngIf="cigar.inStock; else outOfStock" class="in-stock">In stock</span>
+        <ng-template #outOfStock>Out of stock</ng-template>
+      </p>
+    </div>
+  </div>
+  

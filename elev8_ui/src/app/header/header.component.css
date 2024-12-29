@@ -1,44 +1,56 @@
-/* Adjust the logo styling */
+/* Logo Styling */
 .logo-container img {
-  height: 80px; /* Increase size for better clarity */
+  height: 100px; /* Increase size for better clarity */
   width: auto;
 }
 
-/* Extreme left positioning */
 .logo-container {
-  margin-right: 20px; /* Add some spacing between the logo and navbar */
+  margin-right: 30px; /* Add more spacing between logo and navbar */
 }
 
-/* Rounded navbar design */
+/* Navbar Styling */
 .header-round {
-  border-radius: 50px;
+  border-radius: 25px; /* Apply rounded edges */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+  padding: 10px 20px; /* Add some padding for better appearance */
+  background: linear-gradient(90deg, #2c3e50, #34495e); /* Gradient for the background */
 }
 
-/* Limit navbar width */
-.header-mw {
-  max-width: 100%;
-  margin: 0 auto; /* Center-align */
-  display: flex; /* Ensure proper layout */
-  align-items: center; /* Vertically align items */
-}
-
-/* Navbar links styling */
 .navbar-nav .nav-link {
-  font-size: 16px;
-  padding: 10px 15px;
+  font-size: 18px; /* Slightly larger font */
+  color: #ffffff; /* Ensure white text color */
+  padding: 10px 20px;
+  font-weight: 500; /* Slightly bold for better visibility */
+  transition: color 0.3s ease, background 0.3s ease; /* Smooth hover effect */
 }
 
-/* Responsive design for smaller devices */
+.navbar-nav .nav-link:hover {
+  color: #f1c40f; /* Gold color on hover */
+  background: rgba(255, 255, 255, 0.1); /* Subtle background highlight */
+  border-radius: 15px;
+}
+
+/* Responsive Design for Smaller Screens */
 @media (max-width: 768px) {
   .logo-container img {
-    height: 60px; /* Slightly smaller on mobile */
+    height: 70px; /* Reduce size on mobile */
   }
 
   .navbar-nav .nav-link {
-    font-size: 14px;
+    font-size: 16px;
+    padding: 8px 15px;
   }
 
-  .header-mw {
-    flex-wrap: wrap; /* Adjust layout for smaller screens */
+  .header-round {
+    border-radius: 15px; /* Reduce rounding for smaller devices */
+    padding: 10px;
   }
+}
+
+/* Highlight Active Menu Item */
+.navbar-nav .nav-link.active {
+  color: #f1c40f; /* Highlight the active link in gold */
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
 }
