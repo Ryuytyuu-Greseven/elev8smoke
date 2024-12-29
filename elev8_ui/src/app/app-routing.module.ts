@@ -8,7 +8,7 @@ import { BodyComponent } from './body/body.component';
 
 const routes: Routes = [
   { path: '', component: BodyComponent, pathMatch: 'full' }, // Default route
-  { path: 'addprod', component: AddProductsComponent },
+  { path: 'admin/addprod', component: AddProductsComponent },
   { path: 'cigar/:id', component: ViewCigarComponent }, // Dynamic route for cigar details
   { path: 'viewcigars', component: ViewCigarsComponent },
   { path: 'home', redirectTo: 'viewcigars', pathMatch: 'full' }, // Redirect 'home' to 'viewcigars'
