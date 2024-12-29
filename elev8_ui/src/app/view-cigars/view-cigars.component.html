@@ -1,31 +1,34 @@
 <div class="cigar-container">
-    <!-- Search and Filter Section -->
-    <div class="filter-section">
-      <!-- Search Bar -->
-      <input 
-        type="text" 
-        placeholder="Search for cigars..." 
-        class="search-bar" 
-        [(ngModel)]="searchQuery" 
-        (input)="filterCigars()"
-      />
-  
-      <!-- Filter Dropdown -->
-      <select class="filter-dropdown" [(ngModel)]="sortBy" (change)="filterCigars()">
-        <option value="mostViewed">Sort by Most Viewed</option>
-        <option value="priceLowHigh">Sort by Price: Low to High</option>
-        <option value="priceHighLow">Sort by Price: High to Low</option>
-      </select>
-    </div>
-  
-    <!-- Cigar Products Section -->
-    <div class="cigar-list">
-        <div class="cigar-card" *ngFor="let cigar of filteredCigars"(click)="logoutput(cigar)"[routerLink]="['/cigar', cigar.id]">
-          <img [src]="cigar.image" [alt]="cigar.name" />
-          <h3>{{ cigar.name }}</h3>
-          <p>{{ cigar.price | currency }}</p>
-        </div>
-      </div>
-      
+  <!-- Search and Filter Section -->
+  <div class="filter-section">
+    <!-- Search Bar -->
+    <input type="text" placeholder="Search for cigars..." class="search-bar" [(ngModel)]="searchQuery"
+      (input)="filterCigars()" />
+
+    <select class="filter-dropdown" [(ngModel)]="itemCategory" (change)="filterCategory()">
+      <option value="cigar">Cigars</option>
+      <option value="vape">Vapes</option>
+      <option value="humidor">Humidors</option>
+    </select>
+
+    <!-- Filter Dropdown -->
+    <select class="filter-dropdown" [(ngModel)]="sortBy" (change)="filterCigars()">
+      <option value="mostViewed">Sort by Most Viewed</option>
+      <option value="priceLowHigh">Sort by Price: Low to High</option>
+      <option value="priceHighLow">Sort by Price: High to Low</option>
+    </select>
   </div>
-  
+
+  <!-- Cigar Products Section -->
+  <div class="cigar-list">
+    <div class="cigar-card" *ngFor="let cigar of filteredCigars" (click)="logoutput(cigar)"
+      [routerLink]="['/cigar', cigar._id]">
+      <img [src]="cigar.imageUrl" [alt]="cigar.name" />
+      <div class="cigar-info">
+        <h3>{{ cigar.name | titlecase }}</h3>
+        <p>{{ cigar.price | currency }}</p>
+      </div>
+    </div>
+  </div>
+
+</div>

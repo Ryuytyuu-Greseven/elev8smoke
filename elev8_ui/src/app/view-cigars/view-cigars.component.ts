@@ -1,29 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-view-cigars',
   templateUrl: './view-cigars.component.html',
-  styleUrls: ['./view-cigars.component.css']
+  styleUrls: ['./view-cigars.component.css'],
 })
-export class ViewCigarsComponent {
-  cigars = [
-    { id: 123,name: 'Tatiana Classic - Sweet Euphoria', price: 5.99, image: 'assets/images/logo.png', views: 500 },
-    { id: 123,name: 'La Aroma de Cuba Fresh Pack', price: 59.99, image: 'assets/images/logo.png', views: 700 },
-    { id: 123,name: 'Bolivar Robusto', price: 9.99, image: 'assets/images/logo.png', views: 300 },
-    { id: 123,name: 'Juicy Lucy', price: 45.99, image: 'assets/images/logo.png', views: 400 },
-    { id: 123,name: 'Undercrown Maduro', price: 69.99, image: 'assets/images/logo.png', views: 600 },
-    { id: 123,name: 'Treasure Box', price: 120.99, image: 'assets/images/logo.png', views: 800 }
-  ];
+export class ViewCigarsComponent implements OnInit {
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit() {
+    this.fetchItems();
+  }
+
   searchQuery: string = '';
   sortBy: string = 'mostViewed';
-  filteredCigars = [...this.cigars];
+  filteredCigars: any[] = [];
+  itemCategory = 'cigar';
+
+  ogItems: any[] = [];
 
   filterCigars() {
-    let result = this.cigars;
+    let result = [...this.ogItems];
 
     // Search filter
     if (this.searchQuery) {
-      result = result.filter(cigar =>
+      result = result.filter((cigar) =>
         cigar.name.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
@@ -39,7 +41,40 @@ export class ViewCigarsComponent {
 
     this.filteredCigars = result;
   }
-  logoutput(item:any) {
+
+  filterCategory() {
+    let result = [...this.ogItems];
+
+    result = result.filter(
+      (cigar) =>
+        cigar.category.toLowerCase() === this.itemCategory.toLowerCase()
+    );
+
+    console.log(this.itemCategory, result);
+    this.filteredCigars = result;
+  }
+
+  logoutput(item: any) {
     console.log(item);
+  }
+
+  // fetching cigars or essentials
+  fetchItems() {
+    try {
+      this.apiService.getItems().subscribe({
+        next: (response: any) => {
+          console.log('All categories fetched', response);
+          if (response.success) {
+            this.ogItems = response.data;
+            this.filterCategory();
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

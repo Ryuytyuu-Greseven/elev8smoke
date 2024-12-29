@@ -8,6 +8,7 @@ import { config } from 'dotenv';
 import { CategorySchema } from './schemas/Categories.schema';
 import { ItemSchema } from './schemas/Items.schema';
 import { UploadsService } from './uploads/uploads.service';
+import { UserController } from './user/user.controller';
 
 config();
 @Module({
@@ -24,7 +25,7 @@ config();
       },
     ]),
   ],
-  controllers: [AppController, AdminController],
+  controllers: [AppController, AdminController, UserController],
   providers: [AppService, AdminService, UploadsService],
 })
 export class AppModule {}

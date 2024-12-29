@@ -1,0 +1,18 @@
+.dash-img {
+
+  margin-top: 50px;
+
+  background-image: url('https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/video/rW0HQAxkil74l5dkd/videoblocks-4k-abstract-3d-shockwave-vfx-web-field-turbulence-space-line-background-mov_h8hnwlfsn_thumbnail-1080_01.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.2s ease-out;
+  filter: grayscale(0%);
+  transform: scale(1);
+}
+
+.dash-img.scale-up {
+  transform: scale(0.8);
+  filter: grayscale(100%);
+  border-radius: 25px;
+}

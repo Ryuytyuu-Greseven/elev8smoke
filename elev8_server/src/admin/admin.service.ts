@@ -124,4 +124,29 @@ export class AdminService {
     }
     return result;
   }
+
+  async fetchSingleItem(body: any) {
+    const result = {
+      success: true,
+      message: '',
+      data: [],
+    };
+
+    const { itemId } = body;
+
+    try {
+      if (itemId) {
+        result.data = (await this.itemsModel.find({ _id: body.itemId })) as any;
+        result.message = 'Items fetched successfully';
+      } else {
+        result.success = false;
+        result.message = 'Unable to process at the movement!';
+      }
+    } catch (error) {
+      console.log('Error: ', error);
+      result.success = false;
+      result.message = 'Unable to process at the movement!';
+    }
+    return result;
+  }
 }

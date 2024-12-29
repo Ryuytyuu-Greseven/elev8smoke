@@ -1,19 +1,27 @@
-<div class="bg-black">
-  <!-- Header -->
-  <div class="card bg-black">
-    <div class="card-header">
-      <app-header></app-header>
-    </div>
-  </div>
-
-  <!-- Main Content Area -->
-  <main>
-    <!-- Route-specific content will be rendered here -->
-    <router-outlet></router-outlet>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <app-footer></app-footer>
-  </footer>
+<div id="video-preloader" *ngIf="preloaderEnabled">
+  <video #preloaderVideo id="preloader-video" preload="auto" autoplay muted loop>
+    <source src="https://i.imgur.com/EFsrnHL.mp4" type="video/mp4">
+  </video>
 </div>
+
+<ng-container *ngIf="!preloaderEnabled">
+  <div class="bg-black">
+    <!-- Header -->
+    <div class="card bg-black">
+      <div class="card-header">
+        <app-header></app-header>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main>
+      <!-- Route-specific content will be rendered here -->
+      <router-outlet></router-outlet>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <app-footer></app-footer>
+    </footer>
+  </div>
+</ng-container>
