@@ -7,11 +7,71 @@ export class AddCigarsDto {
 
   @IsNotEmpty()
   @IsString()
-  name: string;
+  productname: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   description: string;
+
+  @IsOptional()
+  @IsString()
+  brand: string;
+
+  @IsOptional()
+  @IsString()
+  origin: string;
+
+  @IsOptional()
+  @IsString()
+  shape: string;
+
+  @IsOptional()
+  @IsString()
+  length: number;
+
+  @IsOptional()
+  @IsString()
+  girth: string;
+
+  @IsOptional()
+  @IsString()
+  manufacturer: string;
+
+  @IsOptional()
+  @IsString()
+  wrapper: string;
+
+  @IsOptional()
+  @IsString()
+  binder: string;
+  
+  @IsOptional()
+  @IsString()
+  filler: string;
+
+  @IsOptional()
+  @IsString()
+  flavour: string;
+  
+  @IsOptional()
+  @IsString()
+  bprice: number;
+
+  @IsOptional()
+  @IsNumber()
+  qty: number;
+
+  @IsOptional()
+  @IsNumber()
+  puffs: number;
+
+  @IsOptional()
+  @IsString()
+  capacity: string;
+
+  @IsOptional()
+  @IsNumber()
+  weight: number;
 
   @IsNotEmpty()
   @IsNumber()
@@ -25,7 +85,7 @@ export class AddCigarsDto {
   @IsString()
   imageUrl: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   stock: number;
 }

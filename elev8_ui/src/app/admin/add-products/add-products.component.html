@@ -47,8 +47,8 @@
 
         <!-- Submit Buttons -->
         <div class="form-actions">
-          <button type="button" class="btn-cancel">Cancel</button>
-          <button type="submit" class="btn-submit" [disabled]="AddProducts.pristine || AddProducts.invalid">Submit</button>
+          <button type="button" class="btn-cancel" (click)="onClickCancel()">Cancel</button>
+          <button type="submit" class="btn-submit" [disabled]="AddProducts.pristine || AddProducts.invalid"(click)="onClicksubmit(AddProducts.value)">Submit</button>
         </div>
       </div>
     </form>

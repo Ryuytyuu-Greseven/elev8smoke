@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-add-products',
@@ -35,7 +36,7 @@ export class AddProductsComponent implements OnInit {
     accessories: ['productname', 'price']
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private appService: ApiService) {
     this.AddProducts = this.fb.group({
       category: [null, [Validators.required]],
       productname: [null],
@@ -106,5 +107,43 @@ export class AddProductsComponent implements OnInit {
         control.updateValueAndValidity();
       }
     });
+  }
+
+  onClickCancel() {
+    this.AddProducts.reset();
+    this.selectedCategory = '';
+    this.displayedFields = [];
+  }
+
+  onClicksubmit(val:any) {
+    console.log('Form submitted:', val);
+   let body = {
+    category: val.category,
+      productname: val.productname,
+      description: val.description,
+      brand: val.brand,
+      origin: val.origin,
+      shape: val.shape,
+      length: val.length,
+      girth: val.girth,
+      manufacturer: val.manufacturer,
+      wrapper: val.wrapper,
+      binder: val.binder,
+      filler: val.filler,
+      price: val.price,
+      bprice: val.bprice,
+      qty: val.qty,
+      puffs: val.puffs,
+      flavour: val.flavour,
+      capacity: val.capacity,
+      weight: val.weight
+    }
+    // Make HTTP request to save data to the server
+    this.appService.addCigars(body).subscribe({next: (response: any)=> {
+      console.log('Data saved successfully', response);
+      this.AddProducts.reset();
+      this.selectedCategory = '';
+    this.displayedFields = [];
+    }})
   }
 }

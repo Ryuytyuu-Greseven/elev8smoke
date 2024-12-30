@@ -26,7 +26,7 @@ export class ViewCigarsComponent implements OnInit {
     // Search filter
     if (this.searchQuery) {
       result = result.filter((cigar) =>
-        cigar.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        cigar.productname.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
 
@@ -65,6 +65,7 @@ export class ViewCigarsComponent implements OnInit {
         next: (response: any) => {
           console.log('All categories fetched', response);
           if (response.success) {
+            console.log('All categories fetched', response);
             this.ogItems = response.data;
             this.filterCategory();
           }
