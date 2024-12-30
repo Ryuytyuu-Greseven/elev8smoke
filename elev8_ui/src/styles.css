@@ -2,7 +2,11 @@
 @import "@fortawesome/fontawesome-free/css/all.css";
 
 body {
-  background-color: rgb(0, 0, 0)
+  /* background-color: rgb(0, 0, 0); */
+  /* background-image: url('https://cbeditz.com/public/cbeditz/large/smoke-transparent-background-hd-images-high-resolution-for-editing-d399fgvldk.jpg'); */
+
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pixelstalk.net%2Fwp-content%2Fuploads%2F2016%2F04%2FSmoke-backgrounds-pictures-images-download.jpg&f=1&nofb=1&ipt=fcc1aaeea1ca8e83de06fcbeb1a4f53f68218ceca29393a4d03636131d515642&ipo=images');
+
 }
 
 .margin0 {

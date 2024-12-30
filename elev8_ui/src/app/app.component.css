@@ -25,3 +25,7 @@
 #video-preloader.hidden {
   display: none;
 }
+
+.card{
+  border-radius: 0px;
+}
