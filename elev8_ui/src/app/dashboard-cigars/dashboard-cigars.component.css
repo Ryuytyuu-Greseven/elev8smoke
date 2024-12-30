@@ -31,6 +31,7 @@
   text-align: center;
   background-color: #f9f9f9;
   transition: 0.3s;
+  animation: autoScale 4s infinite;
 }
 
 .panel:hover {
@@ -60,6 +61,43 @@
 .card3-margin {
   margin-top: 15%;
 }
+
 .card1-margin {
   margin-bottom: 0px;
+}
+
+
+
+/* Keyframes for scaling animation */
+@keyframes autoScale {
+  0% {
+    transform: scale(1);
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  }
+
+  35% {
+    transform: scale(1.1);
+    /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); */
+  }
+
+  70% {
+    transform: scale(1);
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  }
+
+  100% {
+    transform: scale(1);
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  }
+}
+
+/* Animation delays for groups */
+.panel:nth-child(1),
+.panel:nth-child(4) {
+  animation-delay: 0s;
+}
+
+.panel:nth-child(2),
+.panel:nth-child(3) {
+  animation-delay: 2s;
 }
