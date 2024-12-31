@@ -70,8 +70,8 @@ export class AddCigarsDto {
   capacity: string;
 
   @IsOptional()
-  @IsNumber()
-  weight: number;
+  @IsString()
+  weight: string;
 
   @IsNotEmpty()
   @IsNumber()

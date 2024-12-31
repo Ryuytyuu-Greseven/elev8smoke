@@ -8,9 +8,13 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./add-products.component.css']
 })
 export class AddProductsComponent implements OnInit {
+toggleForm() {
+throw new Error('Method not implemented.');
+}
   AddProducts: FormGroup;
   selectedCategory: string = '';
-  displayedFields: string[] = []; // This will hold the fields to display dynamically
+  displayedFields: string[] = [];
+  itemCategory = 'Select Category'; // This will hold the fields to display dynamically
 
   // Define category-specific fields
   categoryFields: { [key: string]: string[] } = {
@@ -35,6 +39,8 @@ export class AddProductsComponent implements OnInit {
     tobacco: ['productname', 'flavour', 'weight', 'price'],
     accessories: ['productname', 'price']
   };
+editingEnabled: any;
+formVisible: any;
 
   constructor(private fb: FormBuilder, private appService: ApiService) {
     this.AddProducts = this.fb.group({
@@ -146,4 +152,5 @@ export class AddProductsComponent implements OnInit {
     this.displayedFields = [];
     }})
   }
+  
 }

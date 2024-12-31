@@ -11,6 +11,10 @@ const routes: Routes = [
   { path: 'admin/addprod', component: AddProductsComponent },
   { path: 'cigar/:id', component: ViewCigarComponent }, // Dynamic route for cigar details
   { path: 'viewcigars', component: ViewCigarsComponent },
+  { path: 'viewvapes', component: ViewCigarsComponent },
+  { path: 'viewhumidors', component: ViewCigarsComponent },
+  { path: 'viewtobacco', component: ViewCigarsComponent },
+  { path: 'viewaccess', component: ViewCigarsComponent },
   { path: 'home', redirectTo: 'viewcigars', pathMatch: 'full' }, // Redirect 'home' to 'viewcigars'
   { path: '**', redirectTo: 'viewcigars' }, // Catch-all route
 ];

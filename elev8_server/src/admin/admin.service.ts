@@ -133,15 +133,22 @@ export class AdminService {
   }
 
   // fetch cigars
-  async fetchCigars() {
+  async fetchCigars(body: any) {
     const result = {
       success: true,
       message: '',
       data: [],
     };
+    let category
 
     try {
-      result.data = (await this.itemsModel.find()) as any;
+      console.log('Body:', body);
+      if (body.category) {
+        category = body.category
+      } else {
+        category = 'cigar'
+      }
+      result.data = (await this.itemsModel.find({category: category})) as any;
       result.message = 'Items fetched successfully';
     } catch (error) {
       console.error('Error: ', error);

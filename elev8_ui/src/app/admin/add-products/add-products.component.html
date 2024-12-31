@@ -8,7 +8,7 @@
         <div class="form-row full-width">
           <div class="form-group">
             <label for="category">Product Category</label>
-            <select id="category" formControlName="category" aria-placeholder="select category" (change)="onCategoryChange()">
+            <select id="category" [(ngModel)]="itemCategory" formControlName="category" aria-placeholder="select category" (change)="onCategoryChange()">
               <option value="">Select Category</option>
               <option value="cigar">Cigar</option>
               <option value="vape">Vape</option>

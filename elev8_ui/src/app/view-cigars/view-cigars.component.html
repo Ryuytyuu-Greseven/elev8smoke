@@ -2,14 +2,14 @@
   <!-- Search and Filter Section -->
   <div class="filter-section">
     <!-- Search Bar -->
-    <input type="text" placeholder="Search for cigars..." class="search-bar" [(ngModel)]="searchQuery"
+    <input type="text" placeholder="Search for items..." class="search-bar" [(ngModel)]="searchQuery"
       (input)="filterCigars()" />
 
-    <select class="filter-dropdown" [(ngModel)]="itemCategory" (change)="filterCategory()">
+    <!-- <select class="filter-dropdown" [(ngModel)]="itemCategory" (change)="filterCategory()">
       <option value="cigar">Cigars</option>
       <option value="vape">Vapes</option>
       <option value="humidor">Humidors</option>
-    </select>
+    </select> -->
 
     <!-- Filter Dropdown -->
     <select class="filter-dropdown" [(ngModel)]="sortBy" (change)="filterCigars()">

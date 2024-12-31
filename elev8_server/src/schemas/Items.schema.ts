@@ -57,7 +57,7 @@ export class Item {
   capacity: number;
   
   @Prop()
-  weight: number;
+  weight: string;
 
   @Prop({ ref: 'Category' })
   category: string;
