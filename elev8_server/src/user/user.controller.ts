@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { AdminService } from 'src/admin/admin.service';
+import { AdminService } from '../admin/admin.service';
 
 @Controller('user')
 export class UserController {

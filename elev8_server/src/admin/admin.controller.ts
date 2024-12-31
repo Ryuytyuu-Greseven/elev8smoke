@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { Request } from 'express';
-import { AddCategoryDto } from 'src/dtos/AddCategory.dto';
-import { AddCigarsDto } from 'src/dtos/AddCigars.dto';
-import { UploadsService } from 'src/uploads/uploads.service';
-import { UploadImageDto } from 'src/dtos/UploadImage.dto';
-import { itemCategory } from 'src/dtos/itemCategory.dto';
+import { AddCategoryDto } from '../dtos/AddCategory.dto';
+import { AddCigarsDto } from '../dtos/AddCigars.dto';
+import { UploadsService } from '../uploads/uploads.service';
+import { UploadImageDto } from '../dtos/UploadImage.dto';
+import { itemCategory } from '../dtos/itemCategory.dto';
 
 @Controller('admin')
 export class AdminController {

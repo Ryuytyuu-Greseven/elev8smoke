@@ -3,9 +3,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Request } from 'express';
 import { Model } from 'mongoose';
-import { AddCigarsDto } from 'src/dtos/AddCigars.dto';
-import { Category } from 'src/schemas/Categories.schema';
-import { Item } from 'src/schemas/Items.schema';
+import { AddCigarsDto } from '../dtos/AddCigars.dto';
+import { Category } from '../schemas/Categories.schema';
+import { Item } from '../schemas/Items.schema';
 
 @Injectable()
 export class AdminService {
