@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ValidatorFn,
+} from '@angular/forms';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-add-products',
   templateUrl: './add-products.component.html',
-  styleUrls: ['./add-products.component.css']
+  styleUrls: ['./add-products.component.css'],
 })
 export class AddProductsComponent implements OnInit {
-toggleForm() {
-throw new Error('Method not implemented.');
-}
+  toggleForm() {
+    throw new Error('Method not implemented.');
+  }
   AddProducts: FormGroup;
   selectedCategory: string = '';
   displayedFields: string[] = [];
   itemCategory = 'Select Category'; // This will hold the fields to display dynamically
+
+  presignedUrl: any = '';
+  uploadedFile: any = '';
+  imageUrl: any = '';
 
   // Define category-specific fields
   categoryFields: { [key: string]: string[] } = {
@@ -32,15 +41,15 @@ throw new Error('Method not implemented.');
       'filler',
       'price',
       'bprice',
-      'qty'
+      'qty',
     ],
     vape: ['productname', 'puffs', 'flavour', 'price'],
     humidor: ['productname', 'capacity', 'price'],
     tobacco: ['productname', 'flavour', 'weight', 'price'],
-    accessories: ['productname', 'price']
+    accessories: ['productname', 'price'],
   };
-editingEnabled: any;
-formVisible: any;
+  editingEnabled: any;
+  formVisible: any;
 
   constructor(private fb: FormBuilder, private appService: ApiService) {
     this.AddProducts = this.fb.group({
@@ -88,7 +97,11 @@ formVisible: any;
 
       // Add additional validators for specific fields
       if (field === 'productname') {
-        this.setValidators(field, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]);
+        this.setValidators(field, [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ]);
       } else if (field === 'price' || field === 'bprice' || field === 'qty') {
         this.setValidators(field, [Validators.required, Validators.max(2000)]);
       }
@@ -121,10 +134,10 @@ formVisible: any;
     this.displayedFields = [];
   }
 
-  onClicksubmit(val:any) {
+  onClicksubmit(val: any) {
     console.log('Form submitted:', val);
-   let body = {
-    category: val.category,
+    let body = {
+      category: val.category,
       productname: val.productname,
       description: val.description,
       brand: val.brand,
@@ -142,15 +155,66 @@ formVisible: any;
       puffs: val.puffs,
       flavour: val.flavour,
       capacity: val.capacity,
-      weight: val.weight
-    }
+      weight: val.weight,
+
+      imageUrl: this.imageUrl ?? '',
+    };
     // Make HTTP request to save data to the server
-    this.appService.addCigars(body).subscribe({next: (response: any)=> {
-      console.log('Data saved successfully', response);
-      this.AddProducts.reset();
-      this.selectedCategory = '';
-    this.displayedFields = [];
-    }})
+    this.appService.addCigars(body).subscribe({
+      next: (response: any) => {
+        console.log('Data saved successfully', response);
+        this.AddProducts.reset();
+        this.selectedCategory = '';
+        this.displayedFields = [];
+        this.imageUrl = '';
+        this.uploadedFile = '';
+        this.presignedUrl = '';
+      },
+    });
   }
-  
+
+  // on file upload
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.uploadedFile = input.files[0];
+    }
+  }
+
+  generateUrl(val: any) {
+    if (!this.uploadedFile) {
+      this.onClicksubmit(val);
+      return;
+    }
+
+    const body = {
+      fileName: this.uploadedFile.name,
+      fileType: this.uploadedFile.type,
+    };
+    // console.log(this.uploadedFile);
+    try {
+      this.appService.getPresignedUrl(body).subscribe((response: any) => {
+        console.log(response);
+        if (response?.success) {
+          this.presignedUrl = response.url;
+          this.imageUrl = response.newFileName;
+
+          // Uploading the file to s3
+          this.appService
+            .uploadFileToS3(this.presignedUrl, this.uploadedFile!)
+            .subscribe({
+              next: () => {
+                this.uploadedFile = '';
+                this.onClicksubmit(val);
+              },
+              error: (err) => {
+                console.error('Failed to upload file:', err);
+              },
+            });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

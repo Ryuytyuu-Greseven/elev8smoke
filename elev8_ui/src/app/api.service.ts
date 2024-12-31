@@ -21,7 +21,7 @@ export class ApiService {
   }
 
   getItems(body: any) {
-    return this.requestPost(body,'/admin/fetch-items');
+    return this.requestPost(body, '/admin/fetch-items');
   }
 
   getSingeItem(body: any) {
@@ -30,5 +30,19 @@ export class ApiService {
 
   addCigars(body: any) {
     return this.requestPost(body, '/admin/create-items');
+  }
+
+  // Request a pre-signed URL from the backend
+  getPresignedUrl(body: any) {
+    return this.requestPost(body, '/admin/generate-upload-url');
+  }
+
+  // Upload the file to AWS S3 using the pre-signed URL
+  uploadFileToS3(url: string, file: File) {
+    return this.http.put(url, file, {
+      headers: {
+        'Content-Type': file.type,
+      },
+    });
   }
 }

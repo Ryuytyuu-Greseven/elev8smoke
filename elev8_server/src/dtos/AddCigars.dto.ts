@@ -81,7 +81,7 @@ export class AddCigarsDto {
   @IsString()
   category: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   imageUrl: string;
 

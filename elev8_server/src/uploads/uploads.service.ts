@@ -15,16 +15,16 @@ export class UploadsService {
 
   async getPresignedUrl(fileName: string, fileType: 'jpeg' | 'jpg' | 'png') {
     try {
-      const newFileName = nano.nanoid();
-      console.log('New filename:', fileName);
+      const newFileName = `${nano.nanoid()}.${fileName.split('.').pop()}`;
+      console.log('New fileType:', fileName, fileType);
       const params = {
         Bucket: 'sample.streaming',
         Key: newFileName,
-        Expires: 180, // URL expiry time in seconds
+        // Expires: 180,
         ContentType: fileType,
       };
       const url = await this.s3.getSignedUrlPromise('putObject', params);
-      return { success: true, url };
+      return { success: true, url, newFileName };
     } catch (error) {
       console.log('Error while generating presigned url');
       console.log(error);

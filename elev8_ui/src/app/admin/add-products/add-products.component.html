@@ -8,7 +8,8 @@
         <div class="form-row full-width">
           <div class="form-group">
             <label for="category">Product Category</label>
-            <select id="category" [(ngModel)]="itemCategory" formControlName="category" aria-placeholder="select category" (change)="onCategoryChange()">
+            <select id="category" [(ngModel)]="itemCategory" formControlName="category"
+              aria-placeholder="select category" (change)="onCategoryChange()">
               <option value="">Select Category</option>
               <option value="cigar">Cigar</option>
               <option value="vape">Vape</option>
@@ -17,8 +18,15 @@
               <option value="accessories">Accessories</option>
             </select>
             <div class="form-error" *ngIf="AddProducts.get('category')?.errors && AddProducts.get('category')?.dirty">
-              <ng-container *ngIf="AddProducts.get('category')?.hasError('required')">Category is required.</ng-container>
+              <ng-container *ngIf="AddProducts.get('category')?.hasError('required')">Category is
+                required.</ng-container>
             </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half-width">
+            <input type="file" (change)="onFileSelected($event)" />
           </div>
         </div>
 
@@ -27,18 +35,17 @@
           <div class="form-row">
             <div class="form-group half-width" *ngFor="let field of displayedFields">
               <label [for]="field">{{ field | titlecase }}</label>
-              <input
-                [id]="field"
+              <input [id]="field"
                 [type]="field === 'price' || field === 'bprice' || field === 'qty' ? 'number' : 'text'"
-                [formControlName]="field"
-                [placeholder]="'Enter ' + field"
-              />
+                [formControlName]="field" [placeholder]="'Enter ' + field" />
               <div class="form-error" *ngIf="AddProducts.get(field)?.errors && AddProducts.get(field)?.dirty">
-                <ng-container *ngIf="AddProducts.get(field)?.hasError('required')">{{ field | titlecase }} is required.</ng-container>
+                <ng-container *ngIf="AddProducts.get(field)?.hasError('required')">{{ field | titlecase }} is
+                  required.</ng-container>
                 <ng-container *ngIf="AddProducts.get(field)?.hasError('maxlength')">
                   Maximum allowed characters exceeded!
                 </ng-container>
-                <ng-container *ngIf="AddProducts.get(field)?.hasError('minlength')">Minimum 3 characters required.</ng-container>
+                <ng-container *ngIf="AddProducts.get(field)?.hasError('minlength')">Minimum 3 characters
+                  required.</ng-container>
                 <ng-container *ngIf="AddProducts.get(field)?.hasError('max')">Maximum value exceeded!</ng-container>
               </div>
             </div>
@@ -48,7 +55,8 @@
         <!-- Submit Buttons -->
         <div class="form-actions">
           <button type="button" class="btn-cancel" (click)="onClickCancel()">Cancel</button>
-          <button type="submit" class="btn-submit" [disabled]="AddProducts.pristine || AddProducts.invalid"(click)="onClicksubmit(AddProducts.value)">Submit</button>
+          <button type="submit" class="btn-submit" [disabled]="AddProducts.pristine || AddProducts.invalid"
+            (click)="generateUrl(AddProducts.value)">Submit</button>
         </div>
       </div>
     </form>

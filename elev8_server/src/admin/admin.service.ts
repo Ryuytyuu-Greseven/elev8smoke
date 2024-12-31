@@ -56,23 +56,24 @@ export class AdminService {
           {
             productname: body.productname,
             category: body.category,
-      description: body.description,
-      brand: body.brand,
-      origin: body.origin,
-      shape: body.shape,
-      length: body.length,
-      girth: body.girth,
-      manufacturer: body.manufacturer,
-      wrapper: body.wrapper,
-      binder: body.binder,
-      filler: body.filler,
-      price: body.price,
-      bprice: body.bprice,
-      qty: body.qty,
-      puffs: body.puffs,
-      flavour: body.flavour,
-      capacity: body.capacity,
-      weight: body.weight
+            description: body.description,
+            brand: body.brand,
+            origin: body.origin,
+            shape: body.shape,
+            length: body.length,
+            girth: body.girth,
+            manufacturer: body.manufacturer,
+            wrapper: body.wrapper,
+            binder: body.binder,
+            filler: body.filler,
+            price: body.price,
+            bprice: body.bprice,
+            qty: body.qty,
+            puffs: body.puffs,
+            flavour: body.flavour,
+            capacity: body.capacity,
+            weight: body.weight,
+            imageUrl: body.imageUrl,
           },
         ]);
       } else {
@@ -80,24 +81,24 @@ export class AdminService {
           { _id: body.itemId },
           {
             productname: body.productname,
-      description: body.description,
-      category: body.category,
-      brand: body.brand,
-      origin: body.origin,
-      shape: body.shape,
-      length: body.length,
-      girth: body.girth,
-      manufacturer: body.manufacturer,
-      wrapper: body.wrapper,
-      binder: body.binder,
-      filler: body.filler,
-      price: body.price,
-      bprice: body.bprice,
-      qty: body.qty,
-      puffs: body.puffs,
-      flavour: body.flavour,
-      capacity: body.capacity,
-      weight: body.weight,
+            description: body.description,
+            category: body.category,
+            brand: body.brand,
+            origin: body.origin,
+            shape: body.shape,
+            length: body.length,
+            girth: body.girth,
+            manufacturer: body.manufacturer,
+            wrapper: body.wrapper,
+            binder: body.binder,
+            filler: body.filler,
+            price: body.price,
+            bprice: body.bprice,
+            qty: body.qty,
+            puffs: body.puffs,
+            flavour: body.flavour,
+            capacity: body.capacity,
+            weight: body.weight,
           },
           { upsert: true },
         );
@@ -139,16 +140,16 @@ export class AdminService {
       message: '',
       data: [],
     };
-    let category
+    let category;
 
     try {
       console.log('Body:', body);
       if (body.category) {
-        category = body.category
+        category = body.category;
       } else {
-        category = 'cigar'
+        category = 'cigar';
       }
-      result.data = (await this.itemsModel.find({category: category})) as any;
+      result.data = (await this.itemsModel.find({ category: category })) as any;
       result.message = 'Items fetched successfully';
     } catch (error) {
       console.error('Error: ', error);
