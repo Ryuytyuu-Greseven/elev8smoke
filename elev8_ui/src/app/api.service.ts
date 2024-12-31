@@ -20,11 +20,15 @@ export class ApiService {
     return this.requestGet('/admin/fetch-categories');
   }
 
-  getItems() {
-    return this.requestGet('/admin/fetch-items');
+  getItems(body: any) {
+    return this.requestPost(body,'/admin/fetch-items');
   }
 
   getSingeItem(body: any) {
     return this.requestPost(body, '/user/fetch-single-item');
+  }
+
+  addCigars(body: any) {
+    return this.requestPost(body, '/admin/create-items');
   }
 }

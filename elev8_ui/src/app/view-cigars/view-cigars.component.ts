@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-cigars',
@@ -7,10 +8,22 @@ import { ApiService } from '../api.service';
   styleUrls: ['./view-cigars.component.css'],
 })
 export class ViewCigarsComponent implements OnInit {
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService,public Router: Router) {}
 
   ngOnInit() {
-    this.fetchItems();
+    console.log(this.Router.url, 'url')
+    if(this.Router.url === '/viewcigars') {
+      this.itemCategory = 'cigar';
+    } else if(this.Router.url === '/viewvapes') {
+      this.itemCategory = 'vape';
+    } else if(this.Router.url === '/viewhumidors') {
+      this.itemCategory = 'humidor';
+    } else if(this.Router.url === '/viewaccess') {
+      this.itemCategory = 'accessories';
+    } else if(this.Router.url === '/viewtobacco') {
+      this.itemCategory = 'tobacco';
+    }
+    this.fetchItems({category:this.itemCategory});
   }
 
   searchQuery: string = '';
@@ -26,7 +39,7 @@ export class ViewCigarsComponent implements OnInit {
     // Search filter
     if (this.searchQuery) {
       result = result.filter((cigar) =>
-        cigar.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        cigar.productname.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
 
@@ -59,12 +72,14 @@ export class ViewCigarsComponent implements OnInit {
   }
 
   // fetching cigars or essentials
-  fetchItems() {
+  fetchItems(body: any) {
     try {
-      this.apiService.getItems().subscribe({
+      console.log('Body:', body);
+      this.apiService.getItems(body).subscribe({
         next: (response: any) => {
           console.log('All categories fetched', response);
           if (response.success) {
+            console.log('All categories fetched', response);
             this.ogItems = response.data;
             this.filterCategory();
           }

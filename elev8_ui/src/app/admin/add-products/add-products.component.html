@@ -1,159 +1,56 @@
 <ng-container>
-    <div class="form-container">
-      <form [formGroup]="AddProducts" >
-        <div class="card">
-          <h2 class="form-title">Add Product</h2>
-  
-          <!-- Product Name -->
+  <div class="form-container">
+    <form [formGroup]="AddProducts">
+      <div class="card">
+        <h2 class="form-title">Add Product</h2>
+
+        <!-- Product Category -->
+        <div class="form-row full-width">
           <div class="form-group">
-            <label for="productname">Product Name</label>
-            <input id="productname" type="text" formControlName="productname" placeholder="Enter product name" />
-            <div class="form-error" *ngIf="AddProducts?.get('productname')?.errors && AddProducts?.get('productname')?.dirty">
-              <ng-container *ngIf="AddProducts?.get('productname')?.hasError('required')">
-                Product Name is required.
-              </ng-container>
-              <ng-container *ngIf="AddProducts?.get('productname')?.hasError('minlength')">
-                Must be at least 3 characters.
-              </ng-container>
-              <ng-container *ngIf="AddProducts?.get('productname')?.hasError('maxlength')">
-                Must not exceed 20 characters.
-              </ng-container>
+            <label for="category">Product Category</label>
+            <select id="category" [(ngModel)]="itemCategory" formControlName="category" aria-placeholder="select category" (change)="onCategoryChange()">
+              <option value="">Select Category</option>
+              <option value="cigar">Cigar</option>
+              <option value="vape">Vape</option>
+              <option value="humidor">Humidor</option>
+              <option value="tobacco">Tobacco</option>
+              <option value="accessories">Accessories</option>
+            </select>
+            <div class="form-error" *ngIf="AddProducts.get('category')?.errors && AddProducts.get('category')?.dirty">
+              <ng-container *ngIf="AddProducts.get('category')?.hasError('required')">Category is required.</ng-container>
             </div>
-          </div>
-  
-          <!-- Description -->
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" rows="4" formControlName="description" placeholder="Enter description"></textarea>
-            <div class="form-error" *ngIf="AddProducts?.get('description')?.errors && AddProducts?.get('description')?.dirty">
-              <ng-container *ngIf="AddProducts?.get('description')?.hasError('required')">Description is required.</ng-container>
-              <ng-container *ngIf="AddProducts?.get('description')?.hasError('minlength')">
-                Must be at least 3 characters.
-              </ng-container>
-              <ng-container *ngIf="AddProducts.get('description')?.hasError('maxlength')">
-                Must not exceed 20 characters.
-              </ng-container>
-            </div>
-          </div>
-  
-          <!-- Brand -->
-          <div class="form-group">
-            <label for="brand">Brand</label>
-            <input id="brand" type="text" formControlName="brand" placeholder="Enter brand name" />
-            <div class="form-error" *ngIf="AddProducts.get('brand')?.errors && AddProducts.get('brand')?.dirty">
-              <ng-container *ngIf="AddProducts.get('brand')?.hasError('required')">Brand is required.</ng-container>
-            </div>
-          </div>
-  
-          <!-- Origin -->
-          <div class="form-group">
-            <label for="origin">Origin</label>
-            <input id="origin" type="text" formControlName="origin" placeholder="Enter origin" />
-            <div class="form-error" *ngIf="AddProducts.get('origin')?.errors && AddProducts.get('origin')?.dirty">
-              <ng-container *ngIf="AddProducts.get('origin')?.hasError('required')">Origin is required.</ng-container>
-            </div>
-          </div>
-  
-          <!-- Shape -->
-          <div class="form-group">
-            <label for="shape">Shape</label>
-            <input id="shape" type="text" formControlName="shape" placeholder="Enter shape" />
-            <div class="form-error" *ngIf="AddProducts.get('shape')?.errors && AddProducts.get('shape')?.dirty">
-              <ng-container *ngIf="AddProducts.get('shape')?.hasError('required')">Shape is required.</ng-container>
-            </div>
-          </div>
-  
-          <!-- Length -->
-          <div class="form-group">
-            <label for="length">Length</label>
-            <input id="length" type="text" formControlName="length" placeholder="Enter length" />
-            <div class="form-error" *ngIf="AddProducts.get('length')?.errors && AddProducts.get('length')?.dirty">
-              <ng-container *ngIf="AddProducts.get('length')?.hasError('required')">Length is required.</ng-container>
-            </div>
-          </div>
-  
-          <!-- Girth -->
-          <div class="form-group">
-            <label for="girth">Girth</label>
-            <input id="girth" type="text" formControlName="girth" placeholder="Enter girth" />
-            <div class="form-error" *ngIf="AddProducts.get('girth')?.errors && AddProducts.get('girth')?.dirty">
-              <ng-container *ngIf="AddProducts.get('girth')?.hasError('required')">Girth is required.</ng-container>
-            </div>
-          </div>
-  
-          <!-- Manufacturer -->
-          <div class="form-group">
-            <label for="manufacturer">Manufacturer</label>
-            <input id="manufacturer" type="text" formControlName="manufacturer" placeholder="Enter manufacturer" />
-            <div class="form-error" *ngIf="AddProducts.get('manufacturer')?.errors && AddProducts.get('manufacturer')?.dirty">
-              <ng-container *ngIf="AddProducts.get('manufacturer')?.hasError('required')">Manufacturer is required.</ng-container>
-            </div>
-          </div>
-  
-          <!-- Wrapper -->
-          <div class="form-group">
-            <label for="wrapper">Wrapper</label>
-            <input id="wrapper" type="text" formControlName="wrapper" placeholder="Enter wrapper" />
-            <div class="form-error" *ngIf="AddProducts.get('wrapper')?.errors && AddProducts.get('wrapper')?.dirty">
-              <ng-container *ngIf="AddProducts.get('wrapper')?.hasError('required')">Wrapper is required.</ng-container>
-            </div>
-          </div>
-  
-          <!-- Binder -->
-          <div class="form-group">
-            <label for="binder">Binder</label>
-            <input id="binder" type="text" formControlName="binder" placeholder="Enter binder" />
-            <div class="form-error" *ngIf="AddProducts.get('binder')?.errors && AddProducts.get('binder')?.dirty">
-              <ng-container *ngIf="AddProducts.get('binder')?.hasError('required')">Binder is required.</ng-container>
-            </div>
-          </div>
-  
-          <!-- Filler -->
-          <div class="form-group">
-            <label for="filler">Filler</label>
-            <input id="filler" type="text" formControlName="filler" placeholder="Enter filler" />
-            <div class="form-error" *ngIf="AddProducts.get('filler')?.errors && AddProducts.get('filler')?.dirty">
-              <ng-container *ngIf="AddProducts.get('filler')?.hasError('required')">Filler is required.</ng-container>
-            </div>
-          </div>
-  
-          <!-- Price -->
-          <div class="form-group">
-            <label for="price">Price</label>
-            <input id="price" type="number" formControlName="price" placeholder="Enter price" />
-            <div class="form-error" *ngIf="AddProducts.get('price')?.errors && AddProducts.get('price')?.dirty">
-              <ng-container *ngIf="AddProducts.get('price')?.hasError('required')">Price is required.</ng-container>
-              <ng-container *ngIf="AddProducts.get('price')?.hasError('max')">Max value is 2000.</ng-container>
-            </div>
-          </div>
-  
-          <!-- Base Price -->
-          <div class="form-group">
-            <label for="bprice">Base Price</label>
-            <input id="bprice" type="number" formControlName="bprice" placeholder="Enter base price" />
-            <div class="form-error" *ngIf="AddProducts.get('bprice')?.errors && AddProducts.get('bprice')?.dirty">
-              <ng-container *ngIf="AddProducts.get('bprice')?.hasError('required')">Base Price is required.</ng-container>
-              <ng-container *ngIf="AddProducts.get('bprice')?.hasError('max')">Max value is 2000.</ng-container>
-            </div>
-          </div>
-  
-          <!-- Quantity -->
-          <div class="form-group">
-            <label for="qty">Quantity</label>
-            <input id="qty" type="number" formControlName="qty" placeholder="Enter quantity" />
-            <div class="form-error" *ngIf="AddProducts.get('qty')?.errors && AddProducts.get('qty')?.dirty">
-              <ng-container *ngIf="AddProducts.get('qty')?.hasError('required')">Quantity is required.</ng-container>
-              <ng-container *ngIf="AddProducts.get('qty')?.hasError('max')">Max value is 2000.</ng-container>
-            </div>
-          </div>
-  
-          <!-- Buttons -->
-          <div class="form-actions">
-            <button type="button" class="btn-cancel">Cancel</button>
-            <button type="submit" class="btn-submit" [disabled]="AddProducts.pristine || AddProducts.invalid">Submit</button>
           </div>
         </div>
-      </form>
-    </div>
-  </ng-container>
-  
+
+        <!-- Dynamic Fields -->
+        <div *ngIf="selectedCategory">
+          <div class="form-row">
+            <div class="form-group half-width" *ngFor="let field of displayedFields">
+              <label [for]="field">{{ field | titlecase }}</label>
+              <input
+                [id]="field"
+                [type]="field === 'price' || field === 'bprice' || field === 'qty' ? 'number' : 'text'"
+                [formControlName]="field"
+                [placeholder]="'Enter ' + field"
+              />
+              <div class="form-error" *ngIf="AddProducts.get(field)?.errors && AddProducts.get(field)?.dirty">
+                <ng-container *ngIf="AddProducts.get(field)?.hasError('required')">{{ field | titlecase }} is required.</ng-container>
+                <ng-container *ngIf="AddProducts.get(field)?.hasError('maxlength')">
+                  Maximum allowed characters exceeded!
+                </ng-container>
+                <ng-container *ngIf="AddProducts.get(field)?.hasError('minlength')">Minimum 3 characters required.</ng-container>
+                <ng-container *ngIf="AddProducts.get(field)?.hasError('max')">Maximum value exceeded!</ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Buttons -->
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" (click)="onClickCancel()">Cancel</button>
+          <button type="submit" class="btn-submit" [disabled]="AddProducts.pristine || AddProducts.invalid"(click)="onClicksubmit(AddProducts.value)">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-container>

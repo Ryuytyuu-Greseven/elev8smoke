@@ -1,13 +1,13 @@
 <div class="cigar-detail-container">
     <!-- Image Section -->
     <div class="image-section">
-      <img [src]="cigar.imageUrl" [alt]="cigar.name" />
+      <img [src]="cigar.imageUrl" [alt]="cigar.productname" />
     </div>
 
     <!-- Details Section -->
     <div class="details-section">
-      <h1>{{ cigar.name | titlecase}}</h1>
-      <p><strong>Barcode number:</strong> {{ cigar.barcode ?? '&mdash;' }}</p>
+      <h1>{{ cigar.productname | titlecase}}</h1>
+      <p><strong>Barcode number:</strong> {{ cigar.brand ?? '&mdash;' }}</p>
       <p><strong>Price:</strong> ${{ cigar.price }}</p>
       <p><strong>Description:</strong> {{ cigar.description }}</p>
       <p class="status">

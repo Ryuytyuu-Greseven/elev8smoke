@@ -34,7 +34,7 @@ export class AdminService {
     } catch (error) {
       console.error('Error: ', error);
       result.success = false;
-      result.message = 'Unable to process at the movement!';
+      result.message = 'Unable to process at the moment!';
     }
 
     return result;
@@ -54,24 +54,50 @@ export class AdminService {
       if (!body.itemId) {
         await this.itemsModel.insertMany([
           {
-            name: body.name,
-            description: body.description,
-            price: body.price,
+            productname: body.productname,
             category: body.category,
-            imageUrl: body.imageUrl,
-            stock: body.stock,
+      description: body.description,
+      brand: body.brand,
+      origin: body.origin,
+      shape: body.shape,
+      length: body.length,
+      girth: body.girth,
+      manufacturer: body.manufacturer,
+      wrapper: body.wrapper,
+      binder: body.binder,
+      filler: body.filler,
+      price: body.price,
+      bprice: body.bprice,
+      qty: body.qty,
+      puffs: body.puffs,
+      flavour: body.flavour,
+      capacity: body.capacity,
+      weight: body.weight
           },
         ]);
       } else {
         await this.itemsModel.updateOne(
           { _id: body.itemId },
           {
-            name: body.name,
-            description: body.description,
-            price: body.price,
-            category: body.category,
-            imageUrl: body.imageUrl,
-            stock: body.stock,
+            productname: body.productname,
+      description: body.description,
+      category: body.category,
+      brand: body.brand,
+      origin: body.origin,
+      shape: body.shape,
+      length: body.length,
+      girth: body.girth,
+      manufacturer: body.manufacturer,
+      wrapper: body.wrapper,
+      binder: body.binder,
+      filler: body.filler,
+      price: body.price,
+      bprice: body.bprice,
+      qty: body.qty,
+      puffs: body.puffs,
+      flavour: body.flavour,
+      capacity: body.capacity,
+      weight: body.weight,
           },
           { upsert: true },
         );
@@ -81,7 +107,7 @@ export class AdminService {
     } catch (error) {
       console.error('Error: ', error);
       result.success = false;
-      result.message = 'Unable to process at the movement!';
+      result.message = 'Unable to process at the moment!';
     }
 
     return result;
@@ -101,26 +127,33 @@ export class AdminService {
     } catch (error) {
       console.error('Error: ', error);
       result.success = false;
-      result.message = 'Unable to process at the movement!';
+      result.message = 'Unable to process at the moment!';
     }
     return result;
   }
 
   // fetch cigars
-  async fetchCigars() {
+  async fetchCigars(body: any) {
     const result = {
       success: true,
       message: '',
       data: [],
     };
+    let category
 
     try {
-      result.data = (await this.itemsModel.find()) as any;
+      console.log('Body:', body);
+      if (body.category) {
+        category = body.category
+      } else {
+        category = 'cigar'
+      }
+      result.data = (await this.itemsModel.find({category: category})) as any;
       result.message = 'Items fetched successfully';
     } catch (error) {
       console.error('Error: ', error);
       result.success = false;
-      result.message = 'Unable to process at the movement!';
+      result.message = 'Unable to process at the momement!';
     }
     return result;
   }
@@ -140,12 +173,12 @@ export class AdminService {
         result.message = 'Items fetched successfully';
       } else {
         result.success = false;
-        result.message = 'Unable to process at the movement!';
+        result.message = 'Unable to process at the moment!';
       }
     } catch (error) {
       console.log('Error: ', error);
       result.success = false;
-      result.message = 'Unable to process at the movement!';
+      result.message = 'Unable to process at the moment!';
     }
     return result;
   }

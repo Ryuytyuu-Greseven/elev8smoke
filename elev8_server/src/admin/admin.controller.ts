@@ -5,6 +5,7 @@ import { AddCategoryDto } from 'src/dtos/AddCategory.dto';
 import { AddCigarsDto } from 'src/dtos/AddCigars.dto';
 import { UploadsService } from 'src/uploads/uploads.service';
 import { UploadImageDto } from 'src/dtos/UploadImage.dto';
+import { itemCategory } from 'src/dtos/itemCategory.dto';
 
 @Controller('admin')
 export class AdminController {
@@ -29,9 +30,9 @@ export class AdminController {
     return this.adminService.fetchCategories();
   }
 
-  @Get('fetch-items')
-  fetchCigars() {
-    return this.adminService.fetchCigars();
+  @Post('fetch-items')
+  fetchCigars(@Body() body: itemCategory){
+    return this.adminService.fetchCigars(body);
   }
 
   @Post('generate-upload-url')
