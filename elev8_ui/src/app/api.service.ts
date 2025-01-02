@@ -8,6 +8,8 @@ import { Injectable } from '@angular/core';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
+  signedUrl = environment.url + '/user/file/';
+
   requestPost(body: any, url: string) {
     return this.http.post(environment.url + url, body);
   }
@@ -44,5 +46,10 @@ export class ApiService {
         'Content-Type': file.type,
       },
     });
+  }
+
+  // fetch file signed url
+  fetchSignedUrl(fileName: string) {
+    return this.requestGet('/user/file/' + fileName);
   }
 }

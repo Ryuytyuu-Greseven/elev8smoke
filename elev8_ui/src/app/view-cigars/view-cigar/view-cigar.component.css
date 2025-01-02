@@ -10,12 +10,6 @@
   text-align: center;
 }
 
-.image-section img {
-  max-width: 60%;
-  border-radius: 10px;
-  box-shadow: 12px 19px 25px rgb(0, 0, 0);
-}
-
 .details-section {
   min-height: 70%;
   flex: 2;

@@ -1,19 +1,19 @@
 <div class="cigar-detail-container">
-    <!-- Image Section -->
-    <div class="image-section">
-      <img [src]="cigar.imageUrl" [alt]="cigar.productname" />
-    </div>
-
-    <!-- Details Section -->
-    <div class="details-section">
-      <h1>{{ cigar.productname | titlecase}}</h1>
-      <p><strong>Barcode number:</strong> {{ cigar.brand ?? '&mdash;' }}</p>
-      <p><strong>Price:</strong> ${{ cigar.price }}</p>
-      <p><strong>Description:</strong> {{ cigar.description }}</p>
-      <p class="status">
-        <strong>Status:</strong>
-        <span *ngIf="cigar.inStock; else outOfStock" class="in-stock">In stock</span>
-        <ng-template #outOfStock>Out of stock</ng-template>
-      </p>
-    </div>
+  <!-- Image Section -->
+  <div class="image-section">
+    <app-image *ngIf="cigar?.imageUrl" [imageSrc]="cigar?.imageUrl" [alt]="cigar?.productname" [class]="''" />
   </div>
+
+  <!-- Details Section -->
+  <div class="details-section">
+    <h1>{{ cigar?.productname | titlecase}}</h1>
+    <p><strong>Barcode number:</strong> {{ cigar?.brand ?? '&mdash;' }}</p>
+    <p><strong>Price:</strong> ${{ cigar?.price }}</p>
+    <p><strong>Description:</strong> {{ cigar?.description }}</p>
+    <p class="status">
+      <strong>Status:</strong>
+      <span *ngIf="cigar?.inStock; else outOfStock" class="in-stock">In stock</span>
+      <ng-template #outOfStock>Out of stock</ng-template>
+    </p>
+  </div>
+</div>

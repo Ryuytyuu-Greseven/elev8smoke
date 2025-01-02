@@ -23,7 +23,11 @@
   <div class="cigar-list">
     <div class="cigar-card" *ngFor="let cigar of filteredCigars" (click)="logoutput(cigar)"
       [routerLink]="['/cigar', cigar._id]">
-      <img [src]="cigar.imageUrl" [alt]="cigar.productname" />
+      <div class="card-image">
+        <app-image *ngIf="cigar?.imageUrl" [imageSrc]="cigar?.imageUrl" [alt]="cigar?.productname" [class]="''" />
+      </div>
+      <!-- <img [src]="cigar.imageUrl" [alt]="cigar.productname" /> -->
+
       <div class="cigar-info">
         <h3>{{ cigar.productname | titlecase }}</h3>
         <p>{{ cigar.price | currency }}</p>

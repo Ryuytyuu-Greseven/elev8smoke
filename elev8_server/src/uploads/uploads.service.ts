@@ -31,4 +31,22 @@ export class UploadsService {
       return { success: false, url: null };
     }
   }
+
+  // single fetch file
+  generatePresignedDownloadUrl = async (filePath: string) => {
+    const params = {
+      Bucket: 'sample.streaming',
+      Key: filePath,
+      Expires: 60 * 60 * 24,
+    };
+
+    try {
+      const url = await this.s3.getSignedUrlPromise('getObject', params);
+      console.log('Presigned URL:', url);
+      return { url };
+    } catch (err) {
+      console.error('Error generating presigned URL', err);
+      throw err;
+    }
+  };
 }

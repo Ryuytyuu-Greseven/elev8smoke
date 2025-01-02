@@ -15,6 +15,7 @@ import { AddProductsComponent } from './admin/add-products/add-products.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewCigarsComponent } from './view-cigars/view-cigars.component';
 import { ViewCigarComponent } from './view-cigars/view-cigar/view-cigar.component';
+import { ImageComponent } from './image/image.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ViewCigarComponent } from './view-cigars/view-cigar/view-cigar.componen
     AddProductsComponent,
     ViewCigarsComponent,
     ViewCigarComponent,
+    ImageComponent,
   ],
   imports: [
     BrowserModule,

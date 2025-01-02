@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: 'https://wallet-system.fly.dev',
+  url: 'https://elev8-server.fly.dev',
 };

@@ -50,6 +50,7 @@
   /* background-color: #000000; */
   transition: transform 0.3s ease;
   background-color: rgba(17, 15, 15, 0.795);
+  box-shadow: 12px 19px 20px rgb(0, 0, 0);
 }
 
 .cigar-card img {
@@ -83,12 +84,27 @@
 
 .cigar-card:hover {
   transform: scale(1.05);
-  box-shadow: 12px 19px 20px  rgb(0, 0, 0);
+  box-shadow: 12px 19px 20px rgb(0, 0, 0);
   cursor: pointer;
 }
 
+/* images */
+.card-image {
+  min-height: 150px;
+  max-height: 150px;
+}
+
+
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1100) {
+  .cigar-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    /* Flexible grid layout */
+    gap: 20px;
+    /* Add spacing between cards */
+  }
+
   .filter-section {
     flex-direction: column;
     /* Stack search and filter vertically */
