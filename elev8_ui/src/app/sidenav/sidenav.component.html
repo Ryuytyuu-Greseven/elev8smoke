@@ -1,0 +1,48 @@
+<div class="container-fluid">
+
+  <div class="row">
+
+    <!-- SIDE NAV PILL -->
+    <div class="col-md-2">
+      <div class="bg-black options">
+        <div class="flex-column">
+          <div class="config-pill" [ngClass]="{active: activeConfig === 'promotions'}"
+            (click)="onConfigClick('promotions')">Promotions</div>
+          <div class="config-pill" [ngClass]="{active: activeConfig === 'cigars'}" (click)="onConfigClick('cigars')">
+            Cigars</div>
+          <div class="config-pill" [ngClass]="{active: activeConfig === 'vapes'}" (click)="onConfigClick('vapes')">Vapes
+          </div>
+          <div class="config-pill" [ngClass]="{active: activeConfig === 'humidors'}"
+            (click)="onConfigClick('humidors')">Humidors</div>
+          <div class="config-pill" [ngClass]="{active: activeConfig === 'tobaco'}" (click)="onConfigClick('tobaco')">
+            Tobaco</div>
+          <div class="config-pill" [ngClass]="{active: activeConfig === 'accessories'}"
+            (click)="onConfigClick('accessories')">Accessories</div>
+        </div>
+        <!-- <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Active</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul> -->
+      </div>
+    </div>
+
+    <div class="col-md-10 bg-white margin-card">
+
+      <ng-container *ngIf="activeConfig === 'promotions'">
+        <app-promotions-list></app-promotions-list>
+      </ng-container>
+    </div>
+
+  </div>
+
+</div>

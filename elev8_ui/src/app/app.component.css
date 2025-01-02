@@ -29,3 +29,7 @@
 .card{
   border-radius: 0px;
 }
+
+.main-body {
+  min-height: 550px;
+}

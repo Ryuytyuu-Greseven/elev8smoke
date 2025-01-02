@@ -16,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewCigarsComponent } from './view-cigars/view-cigars.component';
 import { ViewCigarComponent } from './view-cigars/view-cigar/view-cigar.component';
 import { ImageComponent } from './image/image.component';
-import { ManageProductsComponent } from './admin/manage-products/manage-products.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { PromotionsListComponent } from './promotions-list/promotions-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ManageProductsComponent } from './admin/manage-products/manage-products
     ViewCigarsComponent,
     ViewCigarComponent,
     ImageComponent,
-    ManageProductsComponent,
+    SidenavComponent,
+    PromotionsListComponent,
   ],
   imports: [
     BrowserModule,
