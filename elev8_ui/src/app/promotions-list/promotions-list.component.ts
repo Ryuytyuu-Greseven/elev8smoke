@@ -11,7 +11,11 @@ export class PromotionsListComponent {
   uploadedFile: any = '';
   imageUrl: any = '';
 
-  constructor(private appService: ApiService) {}
+  promotionSources: any[] = [];
+
+  constructor(private apiService: ApiService) {
+    this.fetchPromotions();
+  }
 
   // on file upload
   onFileSelected(event: Event): void {
@@ -21,7 +25,7 @@ export class PromotionsListComponent {
     }
   }
 
-  generateUrl(val: any) {
+  generateUrl() {
     if (!this.uploadedFile) {
       return;
     }
@@ -33,24 +37,44 @@ export class PromotionsListComponent {
 
     // console.log(this.uploadedFile);
     try {
-      this.appService.getPresignedUrl(body).subscribe((response: any) => {
+      this.apiService.addPromotions(body).subscribe((response: any) => {
         console.log(response);
         if (response?.success) {
           this.presignedUrl = response.url;
           this.imageUrl = response.newFileName;
 
           // Uploading the file to s3
-          this.appService
+          this.apiService
             .uploadFileToS3(this.presignedUrl, this.uploadedFile!)
             .subscribe({
               next: () => {
                 this.uploadedFile = '';
+                this.fetchPromotions();
               },
               error: (err) => {
                 console.error('Failed to upload file:', err);
               },
             });
         }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // fetching cigars or essentials
+  fetchPromotions() {
+    try {
+      this.apiService.getPromotions().subscribe({
+        next: (response: any) => {
+          console.log('All promotions fetched', response);
+          if (response.success && response.data?.length) {
+            this.promotionSources = response.data;
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        },
       });
     } catch (error) {
       console.log(error);

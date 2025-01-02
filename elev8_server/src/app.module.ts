@@ -9,6 +9,7 @@ import { CategorySchema } from './schemas/Categories.schema';
 import { ItemSchema } from './schemas/Items.schema';
 import { UploadsService } from './uploads/uploads.service';
 import { UserController } from './user/user.controller';
+import { PromotionSchema } from './schemas/Promotions.schema';
 
 config();
 @Module({
@@ -22,6 +23,10 @@ config();
       {
         name: 'Item',
         schema: ItemSchema,
+      },
+      {
+        name: 'Promotion',
+        schema: PromotionSchema,
       },
     ]),
   ],

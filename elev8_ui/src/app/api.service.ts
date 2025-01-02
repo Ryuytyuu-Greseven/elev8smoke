@@ -52,4 +52,14 @@ export class ApiService {
   fetchSignedUrl(fileName: string) {
     return this.requestGet('/user/file/' + fileName);
   }
+
+  // add promotion
+  addPromotions(body: any) {
+    return this.requestPost(body, '/admin/add-promotions');
+  }
+
+  // fetch all promotions
+  getPromotions() {
+    return this.requestGet('/admin/fetch-promotions');
+  }
 }
