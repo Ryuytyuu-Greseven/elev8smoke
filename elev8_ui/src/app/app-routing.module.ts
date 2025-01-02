@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'viewvapes', component: ViewCigarsComponent },
   { path: 'viewhumidors', component: ViewCigarsComponent },
   { path: 'viewtobacco', component: ViewCigarsComponent },
+  {path: 'viewhookah', component: ViewCigarsComponent },
   { path: 'viewaccess', component: ViewCigarsComponent },
   { path: 'home', redirectTo: 'viewcigars', pathMatch: 'full' }, // Redirect 'home' to 'viewcigars'
   { path: '**', redirectTo: 'viewcigars' }, // Catch-all route

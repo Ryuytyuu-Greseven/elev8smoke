@@ -46,6 +46,7 @@ export class AddProductsComponent implements OnInit {
     vape: ['productname', 'puffs', 'flavour', 'price'],
     humidor: ['productname', 'capacity', 'price'],
     tobacco: ['productname', 'flavour', 'weight', 'price'],
+    hookah: ['productname', 'flavour', 'weight', 'price'],
     accessories: ['productname', 'price'],
   };
   editingEnabled: any;

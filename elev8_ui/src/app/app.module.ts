@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewCigarsComponent } from './view-cigars/view-cigars.component';
 import { ViewCigarComponent } from './view-cigars/view-cigar/view-cigar.component';
 import { ImageComponent } from './image/image.component';
+import { ManageProductsComponent } from './admin/manage-products/manage-products.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ImageComponent } from './image/image.component';
     ViewCigarsComponent,
     ViewCigarComponent,
     ImageComponent,
+    ManageProductsComponent,
   ],
   imports: [
     BrowserModule,

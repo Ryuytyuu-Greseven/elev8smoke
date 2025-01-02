@@ -22,6 +22,8 @@ export class ViewCigarsComponent implements OnInit {
       this.itemCategory = 'accessories';
     } else if(this.Router.url === '/viewtobacco') {
       this.itemCategory = 'tobacco';
+    } else if(this.Router.url === '/viewhookah') {
+      this.itemCategory = 'hookah';
     }
     this.fetchItems({category:this.itemCategory});
   }
