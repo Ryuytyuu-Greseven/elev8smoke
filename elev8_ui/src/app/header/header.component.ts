@@ -13,13 +13,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAdminRoute: boolean = false;
 
   subscription!: Subscription;
+  userLoggedIn = false;
 
   constructor(public router: Router, private apiService: ApiService) {
     this.subscription = this.apiService.userSignin.subscribe((value) => {
       if (value) {
-        this.isAdminRoute = true;
+        this.userLoggedIn = true;
       } else {
-        this.isAdminRoute = false;
+        this.userLoggedIn = false;
       }
     });
   }
@@ -49,7 +50,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   signout() {
     sessionStorage.clear();
-    this.apiService.userSignin.next(false);
+    // this.apiService.userSignin.next(false);
+    this.userLoggedIn = false;
     this.router.navigate(['/admin']);
   }
 
