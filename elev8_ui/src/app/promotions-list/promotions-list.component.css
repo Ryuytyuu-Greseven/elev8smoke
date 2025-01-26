@@ -9,7 +9,7 @@
 .scroll {
   width: 100%;
   max-width: 800px;
-  max-height: 350px;
+  max-height: 450px;
   overflow-y: auto;
   padding: 10px;
   scroll-behavior: smooth;

@@ -38,6 +38,7 @@
 
 
 .margin-card {
+  min-height: 500px;
   margin-top: 20px;
   margin-right: 20px;
   max-width: 80%;
