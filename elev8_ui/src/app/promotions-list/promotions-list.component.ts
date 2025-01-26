@@ -70,10 +70,6 @@ export class PromotionsListComponent {
           console.log('All promotions fetched', response);
           if (response.success && response.data?.length) {
             this.promotionSources = response.data;
-            this.promotionSources.push(...response.data)
-            this.promotionSources.push(...response.data)
-            this.promotionSources.push(...response.data)
-            this.promotionSources.push(...response.data)
           }
         },
         error: (err) => {

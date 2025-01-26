@@ -2,7 +2,8 @@
   <div class="carousel-inner">
     <!-- Loop through images and create carousel items -->
     <div *ngFor="let image of images; let i = index" class="carousel-item" [class.active]="i === 0">
-      <img [src]="image.src" class="d-block w-100" [alt]="image.alt">
+      <app-image *ngIf="image?.imageUrl" [imageSrc]="image?.imageUrl" [alt]="'a promotion photo'"
+        [class]="'img-carousal'" />
     </div>
   </div>
 

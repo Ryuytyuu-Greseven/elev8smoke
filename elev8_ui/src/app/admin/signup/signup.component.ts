@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/api.service';
 export class SignupComponent {
   signupForm!: FormGroup;
   submitted = false;
+  errorMessage = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,6 +49,7 @@ export class SignupComponent {
 
     if (this.signupForm.invalid) {
       console.log('Invalid form', this.signupForm);
+      this.errorMessage = 'Invalid credentials';
       return;
     }
 
@@ -64,6 +66,9 @@ export class SignupComponent {
           sessionStorage.setItem('elev8@user', body.username);
           this.router.navigate(['/admin/config']);
           this.apiService.userSignin.next(true);
+          this.errorMessage = '';
+        } else {
+          this.errorMessage = 'Invalid credentials';
         }
       });
     } catch (error) {

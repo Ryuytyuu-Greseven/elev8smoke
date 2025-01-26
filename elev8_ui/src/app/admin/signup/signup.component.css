@@ -58,3 +58,20 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.nav-item {
+  background-color: black;
+  border-radius: 16px;
+  margin-left: 10px;
+  border: 2px solid gray;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-item:hover {
+  transform: scale(1.1);
+}
+
+.error {
+  font-size: small;
+  color: #ec2020;
+}

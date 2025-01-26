@@ -1,1 +1,1 @@
-<img *ngIf="srcUrl" [src]="srcUrl" [alt]="alt" class="img-details" [ngClass]="{class}">
+<img *ngIf="srcUrl" [src]="srcUrl" [alt]="alt" class="" [ngClass]="{'img-carousal': class, 'img-details': !class}" />

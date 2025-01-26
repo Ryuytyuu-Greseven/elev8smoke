@@ -9,6 +9,8 @@
       <label for="password">Password:</label>
       <input formControlName="password" type="password" id="password" name="password" required>
     </div>
-    <button type="submit" (click)="onSubmit()">Sign In</button>
+
+    <span *ngIf="errorMessage" class="error">{{errorMessage}}</span>
+    <button type="submit" class="nav-item" (click)="onSubmit()">Sign In</button>
   </form>
 </div>
