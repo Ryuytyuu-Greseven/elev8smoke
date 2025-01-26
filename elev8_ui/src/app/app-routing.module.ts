@@ -7,19 +7,34 @@ import { ViewCigarComponent } from './view-cigars/view-cigar/view-cigar.componen
 import { BodyComponent } from './body/body.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ManageProductsComponent } from './admin/add-products/manage-products/manage-products.component';
+import { AdminComponent } from './admin/admin.component';
+import { authGuard } from './guards/auth.guards';
 
 const routes: Routes = [
   { path: '', component: BodyComponent, pathMatch: 'full' }, // Default route
-  { path: 'admin/addprod', component: AddProductsComponent },
+  { path: 'admin', component: AdminComponent },
+  {
+    path: 'admin/addprod',
+    component: AddProductsComponent,
+    canActivate: [authGuard],
+  },
   { path: 'cigar/:id', component: ViewCigarComponent }, // Dynamic route for cigar details
   { path: 'viewcigars', component: ViewCigarsComponent },
   { path: 'viewvapes', component: ViewCigarsComponent },
   { path: 'viewhumidors', component: ViewCigarsComponent },
   { path: 'viewtobacco', component: ViewCigarsComponent },
-  {path: 'viewhookah', component: ViewCigarsComponent },
+  { path: 'viewhookah', component: ViewCigarsComponent },
   { path: 'viewaccess', component: ViewCigarsComponent },
-  { path: 'admin/config', component: SidenavComponent },
-  { path: 'admin/manageprod', component: ManageProductsComponent },
+  {
+    path: 'admin/config',
+    component: SidenavComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'admin/manageprod',
+    component: ManageProductsComponent,
+    canActivate: [authGuard],
+  },
   { path: 'home', redirectTo: 'viewcigars', pathMatch: 'full' }, // Redirect 'home' to 'viewcigars'
   { path: '**', redirectTo: 'viewcigars' }, // Catch-all route
 ];

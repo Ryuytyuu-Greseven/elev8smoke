@@ -19,6 +19,7 @@ import { ImageComponent } from './image/image.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { PromotionsListComponent } from './promotions-list/promotions-list.component';
 import { ManageProductsComponent } from './admin/add-products/manage-products/manage-products.component';
+import { SignupComponent } from './admin/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ManageProductsComponent } from './admin/add-products/manage-products/ma
     SidenavComponent,
     PromotionsListComponent,
     ManageProductsComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

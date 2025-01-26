@@ -9,6 +9,8 @@ import { Item } from '../schemas/Items.schema';
 import { Promotion } from '../schemas/Promotions.schema';
 import { UploadsService } from '../uploads/uploads.service';
 import { UploadImageDto } from '../dtos/UploadImage.dto';
+import { User } from 'src/schemas/Users.schema';
+import { SigninUserDto } from 'src/dtos/Signin.dto';
 
 @Injectable()
 export class AdminService {
@@ -16,6 +18,7 @@ export class AdminService {
     @InjectModel(Category.name) private categoryModel: Model<Category>,
     @InjectModel(Item.name) private itemsModel: Model<Item>,
     @InjectModel(Promotion.name) private promotionsModel: Model<Promotion>,
+    @InjectModel(User.name) private userModel: Model<User>,
     private readonly uploadsService: UploadsService,
   ) {}
 
@@ -234,6 +237,31 @@ export class AdminService {
       result.success = false;
       result.message = 'Unable to process at the momement!';
     }
+    return result;
+  }
+
+  async loginUser(body: SigninUserDto) {
+    const result = {
+      success: true,
+      message: '',
+    };
+
+    try {
+      const { username, password } = body;
+
+      const status = await this.userModel.findOne({ username, password });
+      if (status.username) {
+        result.message = 'Signin successful';
+      } else {
+        result.success = false;
+        result.message = 'Invalid credentials';
+      }
+    } catch (error) {
+      console.error('Error: ', error);
+      result.success = false;
+      result.message = 'Unable to signin at the momement!';
+    }
+
     return result;
   }
 }

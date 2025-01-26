@@ -6,6 +6,7 @@ import { AddCigarsDto } from '../dtos/AddCigars.dto';
 import { UploadsService } from '../uploads/uploads.service';
 import { UploadImageDto } from '../dtos/UploadImage.dto';
 import { itemCategory } from '../dtos/itemCategory.dto';
+import { SigninUserDto } from 'src/dtos/Signin.dto';
 
 @Controller('admin')
 export class AdminController {
@@ -48,5 +49,10 @@ export class AdminController {
   @Get('fetch-promotions')
   getPromotions() {
     return this.adminService.fetchPromotions();
+  }
+
+  @Post('/signin')
+  signinUser(@Body() body: SigninUserDto) {
+    return this.adminService.loginUser(body);
   }
 }

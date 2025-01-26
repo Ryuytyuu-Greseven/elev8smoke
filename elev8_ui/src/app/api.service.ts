@@ -12,6 +12,9 @@ export class ApiService {
   public productData = new BehaviorSubject<any>(null);
   currentProduct = this.productData.asObservable();
 
+  signinStatus = sessionStorage.getItem('elev8@user');
+  public userSignin = new BehaviorSubject<boolean>(!!this.signinStatus);
+
   // Method to update product data
   setProduct(data: any) {
     this.productData.next(data);
@@ -72,4 +75,8 @@ export class ApiService {
     return this.requestGet('/admin/fetch-promotions');
   }
 
+  // signin admin
+  singInUser(body: any) {
+    return this.requestPost(body, '/admin/signin');
+  }
 }

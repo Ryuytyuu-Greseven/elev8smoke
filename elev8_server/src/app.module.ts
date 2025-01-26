@@ -10,6 +10,7 @@ import { ItemSchema } from './schemas/Items.schema';
 import { UploadsService } from './uploads/uploads.service';
 import { UserController } from './user/user.controller';
 import { PromotionSchema } from './schemas/Promotions.schema';
+import { UsersSchema } from './schemas/Users.schema';
 
 config();
 @Module({
@@ -28,6 +29,7 @@ config();
         name: 'Promotion',
         schema: PromotionSchema,
       },
+      { name: 'User', schema: UsersSchema },
     ]),
   ],
   controllers: [AppController, AdminController, UserController],
