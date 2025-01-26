@@ -31,12 +31,22 @@ export class AdminController {
   }
 
   @Post('fetch-items')
-  fetchCigars(@Body() body: itemCategory){
+  fetchCigars(@Body() body: itemCategory) {
     return this.adminService.fetchCigars(body);
   }
 
   @Post('generate-upload-url')
   generateUploadUrl(@Body() body: UploadImageDto) {
     return this.uploadsService.getPresignedUrl(body.fileName, body.fileType);
+  }
+
+  @Post('add-promotions')
+  createPromotion(@Body() body: UploadImageDto) {
+    return this.adminService.addPromotions(body);
+  }
+
+  @Get('fetch-promotions')
+  getPromotions() {
+    return this.adminService.fetchPromotions();
   }
 }

@@ -6,12 +6,17 @@ import { Model } from 'mongoose';
 import { AddCigarsDto } from '../dtos/AddCigars.dto';
 import { Category } from '../schemas/Categories.schema';
 import { Item } from '../schemas/Items.schema';
+import { Promotion } from '../schemas/Promotions.schema';
+import { UploadsService } from '../uploads/uploads.service';
+import { UploadImageDto } from '../dtos/UploadImage.dto';
 
 @Injectable()
 export class AdminService {
   constructor(
     @InjectModel(Category.name) private categoryModel: Model<Category>,
     @InjectModel(Item.name) private itemsModel: Model<Item>,
+    @InjectModel(Promotion.name) private promotionsModel: Model<Promotion>,
+    private readonly uploadsService: UploadsService,
   ) {}
 
   // add categories by admin
@@ -180,6 +185,54 @@ export class AdminService {
       console.log('Error: ', error);
       result.success = false;
       result.message = 'Unable to process at the moment!';
+    }
+    return result;
+  }
+
+  async addPromotions(body: UploadImageDto) {
+    const result = {
+      success: true,
+      message: '',
+      data: [],
+      newFileName: '',
+      url: '',
+    };
+
+    try {
+      const filePath = body.fileName;
+      const { url, newFileName } = await this.uploadsService.getPresignedUrl(
+        body.fileName,
+        body.fileType,
+      );
+
+      await new this.promotionsModel({ type: 1, imageUrl: newFileName }).save();
+      result.message = 'Promotion added successfully';
+      result.url = url;
+      result.newFileName = newFileName;
+    } catch (error) {
+      console.log('Error  ', error);
+      result.message = 'Promotion added successfully';
+      result.success = false;
+    }
+
+    return result;
+  }
+
+  // fetch cigars
+  async fetchPromotions() {
+    const result = {
+      success: true,
+      message: '',
+      data: [],
+    };
+
+    try {
+      result.data = (await this.promotionsModel.find()) as any;
+      result.message = 'Promotins fetched successfully';
+    } catch (error) {
+      console.error('Error: ', error);
+      result.success = false;
+      result.message = 'Unable to process at the momement!';
     }
     return result;
   }

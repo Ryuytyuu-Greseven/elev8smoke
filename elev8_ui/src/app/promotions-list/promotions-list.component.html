@@ -1,2 +1,16 @@
+<div class="form-row">
+  <div class="form-group half-width">
+    <input type="file" (change)="onFileSelected($event)" />
+    <button class="btn btn-primary" (click)="generateUrl()">Upload</button>
+  </div>
+</div>
 
-<input type="file" placeholder="Upload">
+<div class="cigar-container">
+  <div class="cigar-list">
+    <div class="cigar-card" *ngFor="let singlePromotion of promotionSources">
+      <div class="card-image">
+        <app-image *ngIf="singlePromotion?.imageUrl" [imageSrc]="singlePromotion?.imageUrl" [alt]="'a promotion photo'" [class]="''" />
+      </div>
+    </div>
+  </div>
+</div>
