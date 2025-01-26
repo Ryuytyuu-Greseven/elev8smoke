@@ -6,6 +6,7 @@ import { ViewCigarsComponent } from './view-cigars/view-cigars.component';
 import { ViewCigarComponent } from './view-cigars/view-cigar/view-cigar.component';
 import { BodyComponent } from './body/body.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { ManageProductsComponent } from './admin/add-products/manage-products/manage-products.component';
 
 const routes: Routes = [
   { path: '', component: BodyComponent, pathMatch: 'full' }, // Default route
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'viewhookah', component: ViewCigarsComponent },
   { path: 'viewaccess', component: ViewCigarsComponent },
   { path: 'admin/config', component: SidenavComponent },
+  { path: 'admin/manageprod', component: ManageProductsComponent },
   { path: 'home', redirectTo: 'viewcigars', pathMatch: 'full' }, // Redirect 'home' to 'viewcigars'
   { path: '**', redirectTo: 'viewcigars' }, // Catch-all route
 ];

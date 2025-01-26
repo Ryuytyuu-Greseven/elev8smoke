@@ -1,0 +1,141 @@
+/* General Container Styling */
+.cigar-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Search and Filter Section */
+  .filter-section {
+    display: flex;
+    justify-content: space-between;
+    /* Align search bar and filter dropdown to left and right */
+    align-items: center;
+    /* Vertically center both elements */
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    width: 20%;
+    /* Adjust width to keep it compact */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .filter-dropdown {
+    width: 20%;
+    /* Adjust dropdown width */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  /* Cigar Products Section */
+  .cigar-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* Flexible grid layout */
+    gap: 20px;
+    /* Add spacing between cards */
+  }
+  
+  .cigar-card {
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 15px;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    /* background-color: #000000; */
+    transition: transform 0.3s ease;
+    background-color: rgba(17, 15, 15, 0.795);
+    box-shadow: 12px 19px 20px rgb(0, 0, 0);
+  }
+  
+  .cigar-card img {
+    max-width: 100%;
+    /* Prevent image overflow */
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 2px solid #000000
+  }
+  
+  .cigar-card .cigar-info {
+    border-radius: 10px;
+    border: 2px dotted #7e7b79;
+  }
+  
+  .cigar-card h3 {
+    font-size: 18px;
+    /* color: #333;  */
+    color: #c78e73e3;
+    letter-spacing: 1px;
+    font-family: fantasy;
+    margin: 5px 0;
+  }
+  
+  .cigar-card p {
+    font-size: 16px;
+    color: #ffffff;
+    /* Subtle gray for pricing text */
+  }
+  
+  .cigar-card:hover {
+    transform: scale(1.05);
+    box-shadow: 12px 19px 20px rgb(0, 0, 0);
+    cursor: pointer;
+  }
+  
+  /* images */
+  .card-image {
+    min-height: 150px;
+    max-height: 150px;
+  }
+  
+  
+  /* Responsive Design */
+  @media (max-width: 1100) {
+    .cigar-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      /* Flexible grid layout */
+      gap: 20px;
+      /* Add spacing between cards */
+    }
+  
+    .filter-section {
+      flex-direction: column;
+      /* Stack search and filter vertically */
+      align-items: flex-start;
+    }
+  
+    .search-bar,
+    .filter-dropdown {
+      width: 20%;
+      /* Take full width on smaller screens */
+      margin-bottom: 10px;
+    }
+  }
+
+
+  .card-actions .icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .card-actions .action-icon {
+    width: 30px;
+    height: 30px;
+    filter: invert(1); /* Inverts the color to make it visible on dark backgrounds */
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+  
+  .card-actions .action-icon:hover {
+    transform: scale(1.2);
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(120deg); /* Adds a highlighted effect */
+  }
+  

@@ -13,6 +13,7 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./add-products.component.css'],
 })
 export class AddProductsComponent implements OnInit {
+  selectedProduct: any;
   toggleForm() {
     throw new Error('Method not implemented.');
   }
@@ -49,12 +50,12 @@ export class AddProductsComponent implements OnInit {
     hookah: ['productname', 'flavour', 'weight', 'price'],
     accessories: ['productname', 'price'],
   };
-  editingEnabled: any;
+  editingEnabled: any = false;
   formVisible: any;
 
   constructor(private fb: FormBuilder, private appService: ApiService) {
     this.AddProducts = this.fb.group({
-      category: [null, [Validators.required]],
+      category: [{value:null,disabled: this.editingEnabled}, Validators.required],
       productname: [null],
       description: [null],
       brand: [null],
@@ -76,7 +77,24 @@ export class AddProductsComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.appService.currentProduct.subscribe((product) => {
+      this.itemCategory = product?.category;
+      this.AddProducts.patchValue(product);
+      this.onCategoryChange();
+      this.editingEnabled = true;
+      console.log(product, 'product');
+    });
+    this.toggleFields();
+  }
+
+  toggleFields() {
+    if (this.editingEnabled) {
+      this.AddProducts.controls['category'].disable();
+    } else {
+      this.AddProducts.controls['category'].enable();
+    }
+  }
 
   onCategoryChange(): void {
     this.selectedCategory = this.AddProducts.get('category')?.value;
@@ -133,6 +151,8 @@ export class AddProductsComponent implements OnInit {
     this.AddProducts.reset();
     this.selectedCategory = '';
     this.displayedFields = [];
+    this.editingEnabled = false;
+    this.toggleFields();
   }
 
   onClicksubmit(val: any) {
@@ -166,6 +186,7 @@ export class AddProductsComponent implements OnInit {
         console.log('Data saved successfully', response);
         this.AddProducts.reset();
         this.selectedCategory = '';
+        this.editingEnabled = false;
         this.displayedFields = [];
         this.imageUrl = '';
         this.uploadedFile = '';
@@ -217,5 +238,12 @@ export class AddProductsComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  onEditItem(item: any) {
+    // console.log(item, 'Edit item');
+    this.editingEnabled = true;
+    this.formVisible = true;
+    this.AddProducts.patchValue(item);
   }
 }

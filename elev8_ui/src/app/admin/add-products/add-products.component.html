@@ -1,3 +1,5 @@
+<!-- <app-manage-products
+(editIt)="onEditItem($event)"></app-manage-products> -->
 <ng-container>
   <div class="form-container">
     <form [formGroup]="AddProducts">
@@ -8,7 +10,7 @@
         <div class="form-row full-width">
           <div class="form-group">
             <label for="category">Product Category</label>
-            <select id="category" [(ngModel)]="itemCategory" formControlName="category"
+            <select  id="category" [(ngModel)]="itemCategory" formControlName="category"
               aria-placeholder="select category" (change)="onCategoryChange()">
               <option value="">Select Category</option>
               <option value="cigar">Cigar</option>
@@ -25,9 +27,9 @@
           </div>
         </div>
 
-        <div class="form-row">
+        <div class="form-row" *ngIf="!editingEnabled">
           <div class="form-group half-width">
-            <input type="file" (change)="onFileSelected($event)" />
+            <input type="file"  (change)="onFileSelected($event)" />
           </div>
         </div>
 
@@ -63,3 +65,5 @@
     </form>
   </div>
 </ng-container>
+
+

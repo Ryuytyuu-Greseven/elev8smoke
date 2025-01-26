@@ -1,12 +1,21 @@
 import { environment } from './../environments/environement';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
+
+  public productData = new BehaviorSubject<any>(null);
+  currentProduct = this.productData.asObservable();
+
+  // Method to update product data
+  setProduct(data: any) {
+    this.productData.next(data);
+  }
 
   signedUrl = environment.url + '/user/file/';
 
@@ -62,4 +71,5 @@ export class ApiService {
   getPromotions() {
     return this.requestGet('/admin/fetch-promotions');
   }
+
 }

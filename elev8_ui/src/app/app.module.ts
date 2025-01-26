@@ -18,6 +18,7 @@ import { ViewCigarComponent } from './view-cigars/view-cigar/view-cigar.componen
 import { ImageComponent } from './image/image.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { PromotionsListComponent } from './promotions-list/promotions-list.component';
+import { ManageProductsComponent } from './admin/add-products/manage-products/manage-products.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { PromotionsListComponent } from './promotions-list/promotions-list.compo
     ImageComponent,
     SidenavComponent,
     PromotionsListComponent,
+    ManageProductsComponent,
   ],
   imports: [
     BrowserModule,

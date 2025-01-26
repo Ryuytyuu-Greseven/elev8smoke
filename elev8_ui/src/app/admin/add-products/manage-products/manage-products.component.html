@@ -1,0 +1,50 @@
+<div class="cigar-container">
+    <!-- Search and Filter Section -->
+    <div class="filter-section">
+      <!-- Search Bar -->
+      <input type="text" placeholder="Search for items..." class="search-bar" [(ngModel)]="searchQuery" (input)="filterCigars()" />
+  
+      <select class="filter-dropdown" [(ngModel)]="itemCategory" (click)="onclick()" (change)="filterCategory();onclick()">
+        <option value="cigar">Cigar</option>
+        <option value="vape">Vape</option>
+        <option value="humidor">Humidor</option>
+        <option value="tobacco">Tobacco</option>
+        <option value="hookah">Hookah</option>
+        <option value="accessories">Accessories</option>
+      </select>
+  
+      <!-- Filter Dropdown -->
+      <select class="filter-dropdown" [(ngModel)]="sortBy" (change)="filterCigars()">
+        <option value="mostViewed">Sort by Most Viewed</option>
+        <option value="priceLowHigh">Sort by Price: Low to High</option>
+        <option value="priceHighLow">Sort by Price: High to Low</option>
+      </select>
+    </div>
+  
+    <!-- Cigar Products Section -->
+    <div class="cigar-list">
+      <div class="cigar-card" *ngFor="let cigar of filteredCigars">
+        <div class="card-image">
+          <app-image *ngIf="cigar?.imageUrl" [imageSrc]="cigar?.imageUrl" [alt]="cigar?.productname" [class]="''"></app-image>
+        </div>
+  
+        <div class="cigar-info">
+          <h3>{{ cigar.productname | titlecase }}</h3>
+          <p>{{ cigar.price | currency }}</p>
+          <!-- Action Buttons -->
+          <div class="card-actions">
+            <button class="icon-btn" (click)="onEditItem(cigar)">
+              <img src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png" alt="Edit Icon" class="action-icon" />
+            </button>
+            <button class="icon-btn" (click)="deleteItem(cigar._id)">
+              <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt="Delete Icon" class="action-icon" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <app-manage-products 
+(editIt)="onEditItem($event)"></app-manage-products>
+   -->

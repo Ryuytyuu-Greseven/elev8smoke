@@ -8,6 +8,18 @@
   margin-top: 60px;
 }
 
+.location-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and text */
+}
+
+.location-icon {
+  width: 20px; /* Adjust the size of the icon */
+  height: 20px;
+}
+
+
 /* .footer-image:before {
   content: "";
   background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F40%2F03%2F80%2F400380e3f2f851a1adcf56cf0f803749.jpg&f=1&nofb=1&ipt=dae06f4c2e8f0b55ce8716fd43dd713a2cdcd52a60ead95cd3f937151642349c&ipo=images');
