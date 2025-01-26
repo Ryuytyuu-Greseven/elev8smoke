@@ -1,3 +1,16 @@
 .form-group {
   margin-bottom: 10px;
 }
+
+.promotions-image {
+  margin: 25px;
+}
+
+.scroll {
+  width: 100%;
+  max-width: 800px;
+  max-height: 350px;
+  overflow-y: auto;
+  padding: 10px;
+  scroll-behavior: smooth;
+}

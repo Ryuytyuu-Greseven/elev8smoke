@@ -43,4 +43,6 @@
   max-width: 80%;
   border: 5px solid gray;
   border-radius: 15px;
+  /* background-color: rgb(17 11 11); */
+  background-color: rgb(63 58 58);
 }

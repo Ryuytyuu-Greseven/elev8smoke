@@ -16,6 +16,8 @@
             (click)="onConfigClick('humidors')">Humidors</div>
           <div class="config-pill" [ngClass]="{active: activeConfig === 'tobaco'}" (click)="onConfigClick('tobaco')">
             Tobaco</div>
+          <div class="config-pill" [ngClass]="{active: activeConfig === 'hookah'}" (click)="onConfigClick('hookah')">
+            Hookah</div>
           <div class="config-pill" [ngClass]="{active: activeConfig === 'accessories'}"
             (click)="onConfigClick('accessories')">Accessories</div>
         </div>
@@ -36,11 +38,11 @@
       </div>
     </div>
 
-    <div class="col-md-10 bg-white margin-card">
+    <div class="col-md-10 margin-card">
 
-      <ng-container *ngIf="activeConfig === 'promotions'">
-        <app-promotions-list></app-promotions-list>
-      </ng-container>
+      <app-promotions-list *ngIf="activeConfig === 'promotions'"></app-promotions-list>
+      <app-view-cigars *ngIf="activeConfig !== 'promotions'" [category]="activeConfig"></app-view-cigars>
+
     </div>
 
   </div>
