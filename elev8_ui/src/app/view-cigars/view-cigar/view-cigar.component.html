@@ -1,3 +1,5 @@
+<button type="button" class="btn-back"(click)="clickback()">
+  <i class="fas fa-arrow-left"></i> Back</button>
 <div class="cigar-detail-container">
   <!-- Image Section -->
   <div class="image-section">
@@ -5,15 +7,33 @@
   </div>
 
   <!-- Details Section -->
-  <div class="details-section">
+  <div class="details-section" *ngIf="cigar?.category !== 'cigar'">
     <h1>{{ cigar?.productname | titlecase}}</h1>
-    <p><strong>Barcode number:</strong> {{ cigar?.brand ?? '&mdash;' }}</p>
+    <p *ngIf="cigar?.category == 'vape'"><strong>Puffs:</strong> {{ cigar?.puffs ?? '&mdash;' }}</p>
+    <p *ngIf="cigar?.category == 'vape' ||  cigar?.category == 'hookah' || cigar?.category == 'tobacco'"><strong>Flavour:</strong> {{ cigar?.flavour ?? '&mdash;' }}</p>
+    <p *ngIf="cigar?.category == 'humidor'"><strong>Capacity:</strong> {{ cigar?.capacity ?? '&mdash;' }}</p>
+    <p *ngIf="cigar?.category == 'tobacco' || cigar?.category == 'hookah'"><strong>Weight:</strong> {{cigar?.weight + 'Oz' }}</p>
     <p><strong>Price:</strong> ${{ cigar?.price }}</p>
-    <p><strong>Description:</strong> {{ cigar?.description }}</p>
+    <!-- <p><strong>Description:</strong> {{ cigar?.description }}</p>
     <p class="status">
       <strong>Status:</strong>
       <span *ngIf="cigar?.inStock; else outOfStock" class="in-stock">In stock</span>
       <ng-template #outOfStock>Out of stock</ng-template>
-    </p>
+    </p> -->
+  </div>
+  <div class="details-section" *ngIf="cigar?.category == 'cigar'">
+    <h1>{{ cigar?.productname | titlecase}}</h1>
+    <p><strong>Brand:</strong> {{ cigar?.brand ?? '&mdash;' }}</p>
+    <p><strong>Size:</strong> {{ cigar?.length + 'X' + cigar.girth}}</p>
+    <p><strong>Origin:</strong> {{ cigar?.origin ?? '&mdash;' }}</p>
+    <p><strong>Wrapper:</strong> {{ cigar?.wrapper?? '&mdash;' }}</p>
+    <p><strong>Binder:</strong> {{ cigar?.binder?? '&mdash;' }}</p>
+    <p><strong>Price:</strong> ${{ cigar?.price }}</p>
+    <p><strong>Description:</strong> {{ cigar?.description }}</p>
+    <!-- <p class="status">
+      <strong>Status:</strong>
+      <span *ngIf="cigar?.inStock; else outOfStock" class="in-stock">In stock</span>
+      <ng-template #outOfStock>Out of stock</ng-template>
+    </p> -->
   </div>
 </div>

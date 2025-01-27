@@ -1,7 +1,7 @@
 import { environment } from './../environments/environement';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,15 +9,16 @@ import { BehaviorSubject } from 'rxjs';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  public productData = new BehaviorSubject<any>(null);
-  currentProduct = this.productData.asObservable();
+  public productData = new Subject<any>();
+  currentProduct: any = {};
 
   signinStatus = sessionStorage.getItem('elev8@user');
   public userSignin = new BehaviorSubject<boolean>(!!this.signinStatus);
 
   // Method to update product data
   setProduct(data: any) {
-    this.productData.next(data);
+    this.currentProduct = data;
+    // this.productData.next(data);
   }
 
   signedUrl = environment.url + '/user/file/';
@@ -44,6 +45,14 @@ export class ApiService {
 
   addCigars(body: any) {
     return this.requestPost(body, '/admin/create-items');
+  }
+
+  deleteitem(body: any) {
+    return this.requestPost(body, '/admin/delete-item');
+  }
+
+  deletePromotion(body: any) {
+    return this.requestPost(body, '/admin/delete-promotion');
   }
 
   // Request a pre-signed URL from the backend

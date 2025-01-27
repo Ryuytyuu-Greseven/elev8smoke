@@ -47,4 +47,8 @@ export class ViewCigarComponent {
       console.log(error);
     }
   }
+
+  clickback() {
+    window.history.back();
+  }
 }

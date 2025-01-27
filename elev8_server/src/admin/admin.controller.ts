@@ -26,6 +26,16 @@ export class AdminController {
     return this.adminService.addCigars(request, body);
   }
 
+  @Post('delete-item')
+  deleteItem(@Req() request: Request, @Body() body) {
+    return this.adminService.deleteItem(request, body);
+  }
+
+  @Post('delete-promotion')
+  deletePromotion(@Req() request: Request, @Body() body) {
+    return this.adminService.deletePromotion(request, body);
+  }
+
   @Get('fetch-categories')
   fetchCategories() {
     return this.adminService.fetchCategories();

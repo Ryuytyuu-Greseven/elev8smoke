@@ -10,6 +10,10 @@
     <div class="cigar-card" *ngFor="let singlePromotion of promotionSources">
       <div class="card-image promotions-image">
         <app-image *ngIf="singlePromotion?.imageUrl" [imageSrc]="singlePromotion?.imageUrl" [alt]="'a promotion photo'" [class]="''" />
+        <!-- Trash Icon -->
+        <button type="button" class="btn-delete" (click)="onDelete(singlePromotion)">
+          <i class="fas fa-trash"></i>
+        </button>
       </div>
     </div>
   </div>

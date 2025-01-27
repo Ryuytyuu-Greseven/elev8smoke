@@ -80,4 +80,18 @@ export class PromotionsListComponent {
       console.log(error);
     }
   }
+
+  onDelete(val: any){
+    console.log(val, 'value delete')
+    try {
+      this.apiService.deletePromotion({itemId: val._id}).subscribe((response: any) => {
+        console.log(response);
+        if (response.success) {
+          this.fetchPromotions();
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

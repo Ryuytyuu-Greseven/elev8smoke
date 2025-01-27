@@ -8,8 +8,10 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./manage-products.component.css']
 })
 export class ManageProductsComponent {
-  @Output() editIt = new EventEmitter<Object>();
-  constructor(private apiService: ApiService,public router:Router) {}
+  // @Output() editIt = new EventEmitter<Object>();
+  constructor(private apiService: ApiService,public router:Router) {
+    this.apiService.currentProduct = {};
+  }
   
   ngOnInit(): void {
     this.fetchItems({ category: this.itemCategory });
@@ -91,7 +93,17 @@ export class ManageProductsComponent {
   }
   deleteItem(itemId: any) {
     console.log('Item ID:', itemId);
+
+      let body = {
+        itemId: itemId,
+      };
+      // Make HTTP request to save data to the server
+      this.apiService.deleteitem(body).subscribe({
+        next: (response: any) => {
+          console.log('Data deleted successfully', response);
+        },
+      });
+      this.fetchItems({ category: this.itemCategory });
+    }
+
   }
-
-
-}

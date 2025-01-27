@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   Validators,
   ValidatorFn,
 } from '@angular/forms';
+// import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -14,6 +15,7 @@ import { ApiService } from 'src/app/api.service';
 })
 export class AddProductsComponent implements OnInit {
   selectedProduct: any;
+  // sub!: Subscription;
   toggleForm() {
     throw new Error('Method not implemented.');
   }
@@ -78,14 +80,25 @@ export class AddProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.appService.currentProduct.subscribe((product) => {
-      this.itemCategory = product?.category;
-      this.AddProducts.patchValue(product);
-      this.onCategoryChange();
+    this.AddProducts.reset();
+    if (this.appService.currentProduct.category) {
+      this.itemCategory = this.appService.currentProduct.category;
+    if (this.itemCategory != null && this.itemCategory != 'null' && this.itemCategory != 'Select Category') {
       this.editingEnabled = true;
-      console.log(product, 'product');
-    });
-    this.toggleFields();
+      this.toggleFields();
+      console.log(this.itemCategory, 'itemCategory');
+      this.AddProducts.patchValue(this.appService.currentProduct);
+    this.onCategoryChange();
+      }
+    }
+    // this.sub = this.appService.productData.subscribe((product) => {
+    //   console.log(product, 'Add Product');
+
+    //   // this.AddProducts.patchValue(product);
+    //   // this.onCategoryChange();
+    //   // this.editingEnabled = true;
+    //   console.log(product, 'product');
+    // });
   }
 
   toggleFields() {
@@ -156,8 +169,10 @@ export class AddProductsComponent implements OnInit {
   }
 
   onClicksubmit(val: any) {
-    console.log('Form submitted:', val);
-    let body = {
+    console.log('Form submitted:', val,this.appService.currentProduct);
+    let body = {}
+    if (!this.editingEnabled) {
+    body = {
       category: val.category,
       productname: val.productname,
       description: val.description,
@@ -180,6 +195,34 @@ export class AddProductsComponent implements OnInit {
 
       imageUrl: this.imageUrl ?? '',
     };
+  } else {
+    body = {
+      itemId: this.appService.currentProduct._id,
+      category: val.category ? val.category : this.appService.currentProduct.category,
+      productname: val.productname,
+      description: val.description,
+      brand: val.brand,
+      origin: val.origin,
+      shape: val.shape,
+      length: val.length,
+      girth: val.girth,
+      manufacturer: val.manufacturer,
+      wrapper: val.wrapper,
+      binder: val.binder,
+      filler: val.filler,
+      price: val.price,
+      bprice: val.bprice,
+      qty: val.qty,
+      puffs: val.puffs,
+      flavour: val.flavour,
+      capacity: val.capacity,
+      weight: val.weight,
+
+      imageUrl: this.imageUrl ? this.imageUrl : this.appService.currentProduct.imageUrl ? this.appService.currentProduct.imageUrl: '',
+    };
+  }
+
+  console.log(body , 'body');
     // Make HTTP request to save data to the server
     this.appService.addCigars(body).subscribe({
       next: (response: any) => {
@@ -246,4 +289,8 @@ export class AddProductsComponent implements OnInit {
     this.formVisible = true;
     this.AddProducts.patchValue(item);
   }
+
+  // ngOnDestroy() {
+  //   this.sub.unsubscribe();
+  // }
 }

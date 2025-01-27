@@ -1,50 +1,47 @@
+.details-section {
+  flex: 2; /* Adjust this value to control proportional width */
+  max-width: 600px; /* Set a maximum width for the details section */
+  padding-left: 20px;
+  font-family: Arial, sans-serif;
+  box-shadow: -3px 10px 33px 10px rgb(0, 0, 0);
+  border-radius: 10px;
+  color: #ffffff; /* Ensure text remains visible */
+}
+
 .cigar-detail-container {
   display: flex;
   padding: 20px;
   color: #ffffff;
-  /* Set text color to white for visibility */
+  gap: 20px; /* Add spacing between sections */
 }
 
 .image-section {
   flex: 1;
   text-align: center;
+  max-width: 400px; /* Ensure the image section doesn't dominate */
 }
 
-.details-section {
-  min-height: 70%;
-  flex: 2;
-  padding-left: 20px;
+.btn-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* Space between icon and text */
+  background-color: #444; /* Dark background color */
+  color: #ffffff; /* White text */
+  font-size: 16px; /* Adjust font size */
   font-family: Arial, sans-serif;
-  box-shadow: -3px 10px 33px 10px rgb(0, 0, 0);
-  border-radius: 10px;
+  padding: 10px 15px; /* Add some padding */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Slightly rounded corners */
+  cursor: pointer; /* Pointer on hover */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
-.details-section h1 {
-  font-size: 24px;
-  color: #ffffff;
-  /* Ensure heading is visible */
+.btn-back:hover {
+  background-color: #444; /* Lighter background on hover */
 }
 
-.details-section p {
-  font-size: 16px;
-  color: #ffffff;
-  /* Ensure paragraph text is visible */
-  margin: 5px 0;
+.btn-back i {
+  font-size: 18px; /* Adjust icon size */
 }
 
-.details-section p strong {
-  color: #f1c40f;
-  /* Highlight labels in gold */
-}
-
-.status {
-  font-size: 18px;
-  font-weight: bold;
-  color: #e74c3c;
-  /* Red for out-of-stock status */
-}
-
-.in-stock {
-  color: #2ecc71;
-  /* Green for in-stock status */
-}
