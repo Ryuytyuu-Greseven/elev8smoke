@@ -9,8 +9,9 @@ import { Item } from '../schemas/Items.schema';
 import { Promotion } from '../schemas/Promotions.schema';
 import { UploadsService } from '../uploads/uploads.service';
 import { UploadImageDto } from '../dtos/UploadImage.dto';
-import { User } from 'src/schemas/Users.schema';
-import { SigninUserDto } from 'src/dtos/Signin.dto';
+import { User } from '../schemas/Users.schema';
+import { SigninUserDto } from '../dtos/Signin.dto';
+import { ItemIdDto } from '../dtos/ItemId.dto';
 
 @Injectable()
 export class AdminService {
@@ -123,7 +124,7 @@ export class AdminService {
     return result;
   }
 
-  async deleteItem(request: Request, body) {
+  async deleteItem(request: Request, body: ItemIdDto) {
     const result = {
       success: true,
       message: '',
@@ -151,7 +152,7 @@ export class AdminService {
     return result;
   }
 
-  async deletePromotion(request: Request, body) {
+  async deletePromotion(request: Request, body: ItemIdDto) {
     const result = {
       success: true,
       message: '',

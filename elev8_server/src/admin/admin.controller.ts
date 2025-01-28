@@ -6,7 +6,8 @@ import { AddCigarsDto } from '../dtos/AddCigars.dto';
 import { UploadsService } from '../uploads/uploads.service';
 import { UploadImageDto } from '../dtos/UploadImage.dto';
 import { itemCategory } from '../dtos/itemCategory.dto';
-import { SigninUserDto } from 'src/dtos/Signin.dto';
+import { SigninUserDto } from '../dtos/Signin.dto';
+import { ItemIdDto } from '../dtos/ItemId.dto';
 
 @Controller('admin')
 export class AdminController {
@@ -27,12 +28,12 @@ export class AdminController {
   }
 
   @Post('delete-item')
-  deleteItem(@Req() request: Request, @Body() body) {
+  deleteItem(@Req() request: Request, @Body() body: ItemIdDto) {
     return this.adminService.deleteItem(request, body);
   }
 
   @Post('delete-promotion')
-  deletePromotion(@Req() request: Request, @Body() body) {
+  deletePromotion(@Req() request: Request, @Body() body: ItemIdDto) {
     return this.adminService.deletePromotion(request, body);
   }
 
