@@ -81,7 +81,7 @@ export class AdminService {
             flavour: body.flavour,
             capacity: body.capacity,
             weight: body.weight,
-            imageUrl: body.imageUrl
+            imageUrl: body.imageUrl,
           },
         ]);
       } else {
@@ -107,7 +107,7 @@ export class AdminService {
             flavour: body.flavour,
             capacity: body.capacity,
             weight: body.weight,
-            imageUrl: body.imageUrl
+            imageUrl: body.imageUrl,
           },
           { upsert: true },
         );
@@ -134,22 +134,14 @@ export class AdminService {
       console.log('Body:', body);
 
       if (body.itemId) {
-        await this.itemsModel.deleteOne({ _id: body.itemId }).then(async (res) => {
-      console.log(res, "result");
-      result.message = "Item deleted successfully";
-    })
-    .catch((err) => {
-      result.success = false;
-      result.message = "Users deletion failed";
-    });
+        await this.itemsModel.deleteOne({ _id: body.itemId });
         result.success = true;
-        result.message = 'Item deleted  successfully';
+        result.message = 'Item deleted successfully';
       } else {
         result.success = false;
-      result.message = 'Unable to delete as item not found!';
+        result.message = 'Unable to delete as item not found!';
       }
       console.log('Updated in DB');
-      result.message = 'Items  successfully';
     } catch (error) {
       console.error('Error: ', error);
       result.success = false;
@@ -158,7 +150,6 @@ export class AdminService {
 
     return result;
   }
-
 
   async deletePromotion(request: Request, body) {
     const result = {
@@ -171,22 +162,14 @@ export class AdminService {
       console.log('Body:', body);
 
       if (body.itemId) {
-        await this.promotionsModel.deleteOne({ _id: body.itemId }).then(async (res) => {
-      console.log(res, "result");
-      result.message = "promotion deleted successfully";
-    })
-    .catch((err) => {
-      result.success = false;
-      result.message = "Promotion deletion failed";
-    });
+        await this.promotionsModel.deleteOne({ _id: body.itemId });
         result.success = true;
         result.message = 'Promotion deleted  successfully';
       } else {
         result.success = false;
-      result.message = 'Unable to delete as promotion not found!';
+        result.message = 'Unable to delete as promotion not found!';
       }
       console.log('Updated in DB');
-      result.message = 'Promotion Deleted  successfully';
     } catch (error) {
       console.error('Error: ', error);
       result.success = false;
@@ -195,8 +178,6 @@ export class AdminService {
 
     return result;
   }
-
-
 
   // fetch categories
   async fetchCategories() {
