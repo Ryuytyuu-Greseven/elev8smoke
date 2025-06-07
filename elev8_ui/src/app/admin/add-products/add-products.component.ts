@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
@@ -55,7 +56,7 @@ export class AddProductsComponent implements OnInit {
   editingEnabled: any = false;
   formVisible: any;
 
-  constructor(private fb: FormBuilder, private appService: ApiService) {
+  constructor(private fb: FormBuilder, private appService: ApiService, private location: Location) {
     this.AddProducts = this.fb.group({
       category: [{value:null,disabled: this.editingEnabled}, Validators.required],
       productname: [null],
@@ -166,6 +167,7 @@ export class AddProductsComponent implements OnInit {
     this.displayedFields = [];
     this.editingEnabled = false;
     this.toggleFields();
+    this.location.back();
   }
 
   onClicksubmit(val: any) {

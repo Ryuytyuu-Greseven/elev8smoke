@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-view-cigars',
@@ -23,10 +24,21 @@ export class ViewCigarsComponent implements OnInit, OnChanges {
 
   @Input() category = '';
 
-  constructor(private apiService: ApiService, public Router: Router) {}
+  adminLoggedIn = false;
+
+  constructor(
+    private apiService: ApiService,
+    private Router: Router,
+    private cartService: CartService
+  ) {}
 
   ngOnInit() {
     console.log(this.Router.url, 'url');
+
+    if(sessionStorage.getItem('elev8@user')){
+      this.adminLoggedIn = true;
+    }
+
     if (this.Router.url === '/viewcigars') {
       this.itemCategory = 'cigar';
     } else if (this.Router.url === '/viewvapes') {
@@ -131,5 +143,10 @@ export class ViewCigarsComponent implements OnInit, OnChanges {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  addToCart(event: any, product: any) {
+    event.stopPropagation();
+    this.cartService.addToCart(product);
   }
 }

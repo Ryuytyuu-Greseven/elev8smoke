@@ -4,13 +4,44 @@
   margin: 0; /* Remove excess margin */
   display: inline-block; /* Keeps the image self-contained */
   overflow: visible; /* Ensure the delete button remains visible */
+  /* max-width: 40%; */
+  max-height: 350px !important;
+}
+
+.card-image {
+  /* max-width: 40%; */
+  max-width: 350px;
+  min-width: 350px;
+  margin-bottom: 25px;
+}
+
+.cigar-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.cigar-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.form-adjust {
+  padding: 10px;
+  margin: 10px;
+  align-items: center;
+  overflow: auto;
+  color: white;
+  background-color: black;
+  display: inline-block;
+  border-radius: 10px;
 }
 
 /* Trash button styling */
 .btn-delete {
-  position: absolute; /* Positioned relative to the promotions-image container */
+  position: relative; /* Positioned relative to the promotions-image container */
   top: 10px; /* Adjust distance from the top of the image */
-  right: 10px; /* Adjust distance from the right of the image */
+  right: -25%; /* Adjust distance from the right of the image */
   display: flex;
   align-items: center;
   justify-content: center;

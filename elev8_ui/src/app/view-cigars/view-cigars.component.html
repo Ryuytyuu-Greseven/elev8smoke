@@ -32,6 +32,10 @@
         <h3>{{ cigar.productname | titlecase }}</h3>
         <p>{{ cigar.price | currency }}</p>
       </div>
+
+      <button *ngIf="!adminLoggedIn" class="add-to-cart-btn" (click)="addToCart($event, cigar)" >
+         🛒
+      </button>
     </div>
   </div>
 

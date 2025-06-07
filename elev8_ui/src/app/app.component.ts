@@ -1,5 +1,21 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  enableProdMode,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { environment } from 'src/environments/environement';
 
+if (environment.production) {
+  enableProdMode();
+
+  console.log = () => {};
+  console.warn = () => {};
+  console.error = () => {};
+  console.info = () => {};
+  console.debug = () => {};
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

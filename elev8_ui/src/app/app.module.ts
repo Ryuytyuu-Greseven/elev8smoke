@@ -20,6 +20,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { PromotionsListComponent } from './promotions-list/promotions-list.component';
 import { ManageProductsComponent } from './admin/add-products/manage-products/manage-products.component';
 import { SignupComponent } from './admin/signup/signup.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SignupComponent } from './admin/signup/signup.component';
     PromotionsListComponent,
     ManageProductsComponent,
     SignupComponent,
+    ShoppingCartComponent,
   ],
   imports: [
     BrowserModule,

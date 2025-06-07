@@ -9,6 +9,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { ManageProductsComponent } from './admin/add-products/manage-products/manage-products.component';
 import { AdminComponent } from './admin/admin.component';
 import { authGuard } from './guards/auth.guards';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   { path: '', component: BodyComponent, pathMatch: 'full' }, // Default route
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'viewtobacco', component: ViewCigarsComponent },
   { path: 'viewhookah', component: ViewCigarsComponent },
   { path: 'viewaccess', component: ViewCigarsComponent },
+  { path: 'cart', component: ShoppingCartComponent },
   {
     path: 'admin/config',
     component: SidenavComponent,

@@ -3,6 +3,7 @@ import { Router, NavigationEnd, Event } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ApiService } from '../api.service';
 import { Subscription } from 'rxjs';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   subscription!: Subscription;
   userLoggedIn = false;
+  cartItemCount: number = 0;
 
-  constructor(public router: Router, private apiService: ApiService) {
+  constructor(
+    public router: Router,
+    private apiService: ApiService,
+    private cartService: CartService
+  ) {
     this.subscription = this.apiService.userSignin.subscribe((value) => {
       if (value) {
         this.userLoggedIn = true;
@@ -40,12 +46,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((event: NavigationEnd) => {
         this.checkAdminRoute(event.urlAfterRedirects);
       });
+
+    this.checkUserStatus();
+    this.subscribeToCartChanges();
   }
 
   private checkAdminRoute(url: string): void {
     // Update isAdminRoute based on the current URL
     this.isAdminRoute = url.includes('/admin');
     console.log(this.isAdminRoute, 'isAdminRoute for URL:', url); // Debugging output
+  }
+
+  checkUserStatus() {
+    this.apiService.userSignin.subscribe((status) => {
+      this.userLoggedIn = status;
+    });
+  }
+
+  subscribeToCartChanges() {
+    this.cartService.cartItems$.subscribe(items => {
+      this.cartItemCount = items.reduce((total, item) => total + item.quantity, 0);
+    });
   }
 
   signout() {
