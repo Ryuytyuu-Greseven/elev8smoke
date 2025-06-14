@@ -1,0 +1,55 @@
+<div class="orders-container">
+  <div class="orders-header">
+    <h2>Orders Management</h2>
+    <button class="refresh-btn" (click)="loadOrders()" [disabled]="loading">
+      <i class="fas fa-sync-alt"></i> Refresh
+    </button>
+  </div>
+
+  <div class="loading-spinner" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Loading orders...</p>
+  </div>
+
+  <div class="error-message" *ngIf="error">
+    <p>{{ error }}</p>
+    <button (click)="loadOrders()">Try Again</button>
+  </div>
+
+  <div class="orders-list" *ngIf="!loading && !error">
+    <div class="orders-table-container">
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders" (click)="viewOrderDetails(order._id)" class="order-row">
+            <td>{{ order._id | slice:0:8 }}...</td>
+            <td>{{ formatDate(order.createdAt) }}</td>
+            <td>{{ order.mobileNumber }}</td>
+            <td>{{ order.total | currency }}</td>
+            <td>
+              <span class="status-badge" [ngClass]="getStatusClass(order.status)">
+                {{ order.status | titlecase }}
+              </span>
+            </td>
+            <td>
+              <button class="view-btn">View Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="no-orders" *ngIf="orders.length === 0">
+      <p>No orders found</p>
+    </div>
+  </div>
+</div>

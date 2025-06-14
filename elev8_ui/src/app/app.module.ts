@@ -21,6 +21,8 @@ import { PromotionsListComponent } from './promotions-list/promotions-list.compo
 import { ManageProductsComponent } from './admin/add-products/manage-products/manage-products.component';
 import { SignupComponent } from './admin/signup/signup.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { OrdersListComponent } from './admin/orders/orders-list/orders-list.component';
+import { OrderDetailsComponent } from './admin/orders/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     ManageProductsComponent,
     SignupComponent,
     ShoppingCartComponent,
+    OrdersListComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,

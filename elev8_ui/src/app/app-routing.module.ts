@@ -10,6 +10,8 @@ import { ManageProductsComponent } from './admin/add-products/manage-products/ma
 import { AdminComponent } from './admin/admin.component';
 import { authGuard } from './guards/auth.guards';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { OrdersListComponent } from './admin/orders/orders-list/orders-list.component';
+import { OrderDetailsComponent } from './admin/orders/order-details/order-details.component';
 
 const routes: Routes = [
   { path: '', component: BodyComponent, pathMatch: 'full' }, // Default route
@@ -35,6 +37,16 @@ const routes: Routes = [
   {
     path: 'admin/manageprod',
     component: ManageProductsComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'admin/orders',
+    component: OrdersListComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'admin/orders/:id',
+    component: OrderDetailsComponent,
     canActivate: [authGuard],
   },
   { path: 'home', redirectTo: 'viewcigars', pathMatch: 'full' }, // Redirect 'home' to 'viewcigars'

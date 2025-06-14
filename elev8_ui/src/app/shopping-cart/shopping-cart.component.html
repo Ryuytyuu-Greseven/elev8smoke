@@ -46,10 +46,13 @@
         <span>Total:</span>
         <span>{{ total | currency }}</span>
       </div>
+      <span class="summary-row">excluding taxes</span>
+
+      <input placeholder="Enter Mobile Number" type="text" [(ngModel)]="mobileNumber" maxlength="10" min="6">
 
       <div class="cart-actions">
         <button (click)="clearCart()" class="clear-cart-btn">Clear Cart</button>
-        <button class="checkout-btn" *ngIf="false">Proceed to Checkout</button>
+        <button class="checkout-btn" [ngClass]="{'disable-checkout': mobileNumber.length <= 6}" (click)="checkOut()">Proceed to Checkout</button>
       </div>
     </div>
   </div>

@@ -13,6 +13,8 @@ export class ShoppingCartComponent implements OnInit {
   cartItems: CartItem[] = [];
   total: number = 0;
 
+  mobileNumber= '';
+
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
@@ -35,5 +37,11 @@ export class ShoppingCartComponent implements OnInit {
 
   clearCart() {
     this.cartService.clearCart();
+  }
+
+  checkOut(){
+    if(this.mobileNumber.length > 6){
+
+    }
   }
 }
