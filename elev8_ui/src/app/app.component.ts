@@ -25,16 +25,19 @@ export class AppComponent implements OnInit {
   title = 'elev8_ui';
 
   preloaderEnabled = true;
+  showModal = false;
 
   @ViewChild('preloaderVideo')
   preloaderVideo!: ElementRef<HTMLVideoElement>;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
       document.getElementById('video-preloader')?.remove();
       this.preloaderEnabled = false;
+      this.showModal= true;
     }, 1500);
   }
 
@@ -57,5 +60,15 @@ export class AppComponent implements OnInit {
       );
     });
     // }
+  }
+
+
+  // write a modal closing function logic in ts file
+  verifyAge(value:boolean){
+    if(value){
+      this.showModal = false;
+    } else {
+      window.location.href = 'https://www.google.com';
+    }
   }
 }

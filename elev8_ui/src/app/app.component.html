@@ -27,3 +27,15 @@
     </footer>
   </div>
 </ng-container>
+
+
+<div *ngIf="showModal" class="modal-overlay">
+  <div class="modal-content">
+    <h2>Are you 18 years of age or older?</h2>
+    <div class="s">
+      <button type="button" class="btn btn-outline-success me-2" (click)="verifyAge(true)">Yes</button>
+      <button  type="button" class="btn btn-outline-danger" (click)="verifyAge(false)">No</button>
+    </div>
+  </div>
+</div>
+
