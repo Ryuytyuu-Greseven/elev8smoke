@@ -12,7 +12,7 @@
 }
 
 .orders-header h2 {
-  color: #333;
+  color: #bcbcbc;
   margin: 0;
 }
 
@@ -160,6 +160,13 @@
   color: #6c757d;
   font-size: 1.1rem;
   margin: 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
 }
 
 @media (max-width: 768px) {

@@ -23,7 +23,13 @@ export class Order {
   mobileNumber: string;
 
   @Prop()
+  name: string;
+
+  @Prop()
   items: Array<Item>;
+
+  @Prop()
+  status: number;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

@@ -10,11 +10,12 @@ export interface Order {
     _id: string;
     productname: string;
     price: number;
-    quantity: number;
+    qty: number;
     imageUrl: string;
   }[];
+  name: string;
   total: number;
-  status: 'pending' | 'processing' | 'completed' | 'cancelled';
+  status: number;
   createdAt: string;
 }
 
@@ -32,15 +33,15 @@ export class OrdersService {
     return this.http.post(`${environment.url}${endpoint}`, body);
   }
 
-  getAllOrders(): Observable<any> {
-    return this.requestGet('/admin/fetch-orders');
+  getAllOrders(body:any): Observable<any> {
+    return this.requestPost( body,'/admin/fetch-orders');
   }
 
   getOrderDetails(orderId: string): Observable<any> {
     return this.requestPost({ orderId }, '/admin/fetch-order-details');
   }
 
-  updateOrderStatus(orderId: string, status: Order['status']): Observable<any> {
+  updateOrderStatus(orderId: string, status: number): Observable<any> {
     return this.requestPost({ orderId, status }, '/admin/update-order-status');
   }
 }

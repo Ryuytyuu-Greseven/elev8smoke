@@ -11,6 +11,7 @@ import { UploadsService } from './uploads/uploads.service';
 import { UserController } from './user/user.controller';
 import { PromotionSchema } from './schemas/Promotions.schema';
 import { UsersSchema } from './schemas/Users.schema';
+import { OrderSchema } from './schemas/Orders.schema';
 
 config();
 @Module({
@@ -30,6 +31,7 @@ config();
         schema: PromotionSchema,
       },
       { name: 'User', schema: UsersSchema },
+      { name: 'Order', schema: OrderSchema },
     ]),
   ],
   controllers: [AppController, AdminController, UserController],

@@ -5,17 +5,29 @@ import { OrdersService, Order } from '../../../services/orders.service';
 @Component({
   selector: 'app-orders-list',
   templateUrl: './orders-list.component.html',
-  styleUrls: ['./orders-list.component.css']
+  styleUrls: ['./orders-list.component.css'],
 })
 export class OrdersListComponent implements OnInit {
-  orders: Order[] = [];
+  orders: Order[] = [
+    // {
+    //   _id: '3456789',
+    //   createdAt: '25-09-2024',
+    //   mobileNumber: '2345664342',
+    //   total: 567.78,
+    //   status: 1,
+    //   items: [],
+    // },
+  ];
   loading: boolean = true;
   error: string | null = null;
 
-  constructor(
-    private ordersService: OrdersService,
-    private router: Router
-  ) {}
+  pagination = {
+    pageNo: 1,
+    pageSize: 10,
+    search: '',
+  };
+
+  constructor(private ordersService: OrdersService, private router: Router) {}
 
   ngOnInit() {
     this.loadOrders();
@@ -25,36 +37,60 @@ export class OrdersListComponent implements OnInit {
     this.loading = true;
     this.error = null;
 
-    this.ordersService.getAllOrders().subscribe({
+    const body = {
+      pageNo: this.pagination.pageNo,
+      pageSize: this.pagination.pageSize,
+      search: this.pagination.search,
+    };
+
+    this.ordersService.getAllOrders(body).subscribe({
       next: (response) => {
+        console.log('resonse of orders', response);
         if (response.success) {
           this.orders = response.data;
         } else {
-          this.error = 'Failed to load orders';
+          // this.error = 'Failed to load orders';
         }
         this.loading = false;
       },
       error: (err) => {
-        this.error = 'Error loading orders';
+        // this.error = 'Error loading orders';
         this.loading = false;
         console.error('Error loading orders:', err);
-      }
+      },
     });
+  }
+
+  onSearch() {
+    this.pagination.pageNo = 1;
+    this.loadOrders();
+  }
+
+  onPagination(value: boolean) {
+    if(this.loading){
+      return;
+    }
+    if (value) {
+      this.pagination.pageNo = this.pagination.pageNo + 1;
+    } else {
+      this.pagination.pageNo = this.pagination.pageNo - 1 ? this.pagination.pageNo - 1 : 1;
+    }
+    this.loadOrders();
   }
 
   viewOrderDetails(orderId: string) {
     this.router.navigate(['/admin/orders', orderId]);
   }
 
-  getStatusClass(status: Order['status']): string {
+  getStatusClass(status: number): string {
     switch (status) {
-      case 'pending':
+      case 1:
         return 'status-pending';
-      case 'processing':
+      case 2:
         return 'status-processing';
-      case 'completed':
+      case 3:
         return 'status-completed';
-      case 'cancelled':
+      case 4:
         return 'status-cancelled';
       default:
         return '';
@@ -67,7 +103,7 @@ export class OrdersListComponent implements OnInit {
       month: 'short',
       day: 'numeric',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     });
   }
 }

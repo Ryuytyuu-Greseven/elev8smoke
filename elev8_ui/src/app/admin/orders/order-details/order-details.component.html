@@ -31,6 +31,7 @@
           </div>
           <div class="info-item">
             <span class="label">Customer:</span>
+            <span class="value">{{ order.name }}</span>
             <span class="value">{{ order.mobileNumber }}</span>
           </div>
           <div class="info-item">
@@ -41,10 +42,10 @@
                 (change)="updateOrderStatus($event)"
                 class="status-select"
               >
-                <option value="pending">Pending</option>
-                <option value="processing">Processing</option>
-                <option value="completed">Completed</option>
-                <option value="cancelled">Cancelled</option>
+                <option value="1">Pending</option>
+                <option value="2">Processing</option>
+                <option value="3">Completed</option>
+                <option value="4">Cancelled</option>
               </select>
             </span>
           </div>
@@ -61,10 +62,10 @@
             <div class="item-details">
               <h4>{{ item.productname }}</h4>
               <p class="item-price">{{ item.price | currency }}</p>
-              <p class="item-quantity">Quantity: {{ item.quantity }}</p>
+              <p class="item-quantity">Quantity: {{ item.qty }}</p>
             </div>
             <div class="item-total">
-              {{ item.price * item.quantity | currency }}
+              {{ item.price * item.qty | currency }}
             </div>
           </div>
         </div>

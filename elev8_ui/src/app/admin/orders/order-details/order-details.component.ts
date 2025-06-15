@@ -34,6 +34,7 @@ export class OrderDetailsComponent implements OnInit {
 
     this.ordersService.getOrderDetails(orderId).subscribe({
       next: (response) => {
+        console.log('Order details', response);
         if (response.success) {
           this.order = response.data;
         } else {
@@ -55,6 +56,7 @@ export class OrderDetailsComponent implements OnInit {
 
     this.ordersService.updateOrderStatus(this.order._id, status).subscribe({
       next: (response) => {
+        console.log('update response', response);
         if (response.success && this.order) {
           this.order.status = status;
         }

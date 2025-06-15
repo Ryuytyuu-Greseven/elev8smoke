@@ -88,4 +88,9 @@ export class ApiService {
   singInUser(body: any) {
     return this.requestPost(body, '/admin/signin');
   }
+
+  // checkout order
+  checkoutOrder(body: any) {
+    return this.requestPost(body, '/user/place-order');
+  }
 }

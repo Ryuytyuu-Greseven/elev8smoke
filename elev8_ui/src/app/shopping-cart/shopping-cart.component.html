@@ -48,11 +48,15 @@
       </div>
       <span class="summary-row">excluding taxes</span>
 
-      <input placeholder="Enter Mobile Number" type="text" [(ngModel)]="mobileNumber" maxlength="10" min="6">
+      <label for="userno" class="form-label">Mobile Number</label>
+      <input class="form-control" placeholder="Name" id="username" type="text"
+      [(ngModel)]="userName" maxlength="25" min="3">
+      <input class="form-control" placeholder="Enter Mobile Number" id="userno" type="text"
+      [(ngModel)]="mobileNumber" maxlength="10" min="6" (keypress)="allowOnlyNumbers($event)">
 
       <div class="cart-actions">
         <button (click)="clearCart()" class="clear-cart-btn">Clear Cart</button>
-        <button class="checkout-btn" [ngClass]="{'disable-checkout': mobileNumber.length <= 6}" (click)="checkOut()">Proceed to Checkout</button>
+        <button class="checkout-btn" [ngClass]="{'disable-checkout': mobileNumber.length <= 8}" (click)="checkOut()">Proceed to Checkout</button>
       </div>
     </div>
   </div>

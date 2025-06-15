@@ -12,6 +12,8 @@ import { UploadImageDto } from '../dtos/UploadImage.dto';
 import { User } from '../schemas/Users.schema';
 import { SigninUserDto } from '../dtos/Signin.dto';
 import { ItemIdDto } from '../dtos/ItemId.dto';
+import { Order } from 'src/schemas/Orders.schema';
+import { CheckoutOrder } from 'src/dtos/CheckoutOrder';
 
 @Injectable()
 export class AdminService {
@@ -20,6 +22,7 @@ export class AdminService {
     @InjectModel(Item.name) private itemsModel: Model<Item>,
     @InjectModel(Promotion.name) private promotionsModel: Model<Promotion>,
     @InjectModel(User.name) private userModel: Model<User>,
+    @InjectModel(Order.name) private orderModel: Model<Order>,
     private readonly uploadsService: UploadsService,
   ) {}
 
@@ -318,6 +321,108 @@ export class AdminService {
       console.error('Error: ', error);
       result.success = false;
       result.message = 'Unable to signin at the momement!';
+    }
+
+    return result;
+  }
+
+  async fetchOrders(body: any) {
+    const result = {
+      success: true,
+      message: '',
+      data: [],
+    };
+
+    try {
+      const ordersQuery = this.orderModel.find({});
+
+      ordersQuery.limit(25);
+      ordersQuery.sort({ createdAt: -1 });
+
+      if (body.pageNo - 1) {
+        ordersQuery.skip(body.pageNo * 25);
+      }
+
+      if (body?.search?.length) {
+        ordersQuery.where({
+          $or: [
+            { mobileNumber: { $regex: body.search, $options: 'i' } },
+            { name: { $regex: body.search, $options: 'i' } },
+          ],
+        });
+      }
+
+      const orders = await ordersQuery;
+      result.data = orders;
+    } catch (error) {
+      console.log(error);
+      result.success = false;
+      result.message = 'Unable to process at the moment!';
+    }
+
+    return result;
+  }
+
+  async fetchSingleOrder(body: any) {
+    const result = {
+      success: true,
+      message: '',
+      data: {},
+    };
+
+    try {
+      const order = await this.orderModel.findById({ _id: body.orderId });
+      result.data = order;
+    } catch (error) {
+      console.log(error);
+      result.success = false;
+      result.message = 'Unable to process at the moment!';
+    }
+
+    return result;
+  }
+
+  async placeOrder(body: CheckoutOrder) {
+    const result = {
+      success: true,
+      message: '',
+    };
+
+    try {
+      const insertion = await new this.orderModel({
+        mobileNumber: body.mobileNumber,
+        items: body.items,
+        total: body.total,
+        status: 1,
+        name: body.name,
+      }).save();
+      result.message = 'Order placed successfully';
+      console.log('Insertion response', insertion);
+    } catch (error) {
+      console.log(error);
+      result.message = 'Unable to process at the moment!';
+      result.success = false;
+    }
+
+    return result;
+  }
+  async updateOrderDetails(body: any) {
+    const result = {
+      success: true,
+      message: '',
+    };
+
+    try {
+      const updation = await this.orderModel.updateOne(
+        { _id: body.orderId },
+        { status: body.status },
+      );
+      result.message = 'Order updated successfully';
+      console.log('updation response', updation);
+    } catch (error) {
+      console.log(error);
+      result.message = 'Unable to process at the moment!';
+      result.success = false;
     }
 
     return result;

@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AdminService } from '../admin/admin.service';
 import { UploadsService } from '../uploads/uploads.service';
+import { CheckoutOrder } from 'src/dtos/CheckoutOrder';
 
 @Controller('user')
 export class UserController {
@@ -17,5 +18,10 @@ export class UserController {
   @Get('file/:path')
   fetchAllItems(@Param('path') path: string) {
     return this.uploadService.generatePresignedDownloadUrl(path);
+  }
+
+  @Post('place-order')
+  placeOrder(@Body() body: CheckoutOrder) {
+    return this.adminService.placeOrder(body);
   }
 }
