@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AdminService } from '../admin/admin.service';
 import { UploadsService } from '../uploads/uploads.service';
-import { CheckoutOrder } from 'src/dtos/CheckoutOrder';
+import { CheckoutOrder } from '../dtos/CheckoutOrder';
 
 @Controller('user')
 export class UserController {

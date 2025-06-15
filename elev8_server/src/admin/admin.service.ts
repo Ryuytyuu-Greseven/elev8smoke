@@ -12,8 +12,8 @@ import { UploadImageDto } from '../dtos/UploadImage.dto';
 import { User } from '../schemas/Users.schema';
 import { SigninUserDto } from '../dtos/Signin.dto';
 import { ItemIdDto } from '../dtos/ItemId.dto';
-import { Order } from 'src/schemas/Orders.schema';
-import { CheckoutOrder } from 'src/dtos/CheckoutOrder';
+import { Order } from '../schemas/Orders.schema';
+import { CheckoutOrder } from '../dtos/CheckoutOrder';
 
 @Injectable()
 export class AdminService {
