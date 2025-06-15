@@ -66,4 +66,19 @@ export class AdminController {
   signinUser(@Body() body: SigninUserDto) {
     return this.adminService.loginUser(body);
   }
+
+  @Post('fetch-orders')
+  getOrders(@Body() body: any) {
+    return this.adminService.fetchOrders(body);
+  }
+
+  @Post('fetch-order-details')
+  singleOrders(@Body() body: any) {
+    return this.adminService.fetchSingleOrder(body);
+  }
+
+  @Post('update-order-status')
+  updateOrder(@Body() body: any) {
+    return this.adminService.updateOrderDetails(body);
+  }
 }

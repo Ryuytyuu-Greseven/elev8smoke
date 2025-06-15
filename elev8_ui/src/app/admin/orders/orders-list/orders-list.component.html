@@ -1,0 +1,75 @@
+<div class="orders-container">
+  <div class="orders-header">
+    <h2>Orders Management</h2>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="col-md-4 form-control" placeholder="Customer | Number" (keyup.enter)="onSearch()" [(ngModel)]="pagination.search">
+      </div>
+    </div>
+    <button class="refresh-btn" (click)="loadOrders()" [disabled]="loading">
+      <i class="fas fa-sync-alt"></i> Refresh
+    </button>
+
+  </div>
+
+  <div class="loading-spinner" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Loading orders...</p>
+  </div>
+
+  <div class="error-message" *ngIf="error">
+    <p>{{ error }}</p>
+    <button (click)="loadOrders()">Try Again</button>
+  </div>
+
+  <div class="orders-list" *ngIf="!loading && !error">
+    <div class="orders-table-container">
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <!-- <th>Order ID</th> -->
+            <th>Customer</th>
+            <th>Number</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders" class="order-row">
+            <!-- <td>{{ order._id }}</td> -->
+            <td>{{ order.name }}</td>
+            <td>{{ order.mobileNumber }}</td>
+            <td>{{ order.createdAt | date }}</td>
+            <td>{{ order.total | currency }}</td>
+            <td>
+              <span class="status-badge" [ngClass]="getStatusClass(order.status)">
+
+                <ng-container *ngIf="order?.status === 1">Pending</ng-container>
+                <ng-container *ngIf="order?.status === 2">Processing</ng-container>
+                <ng-container *ngIf="order?.status === 3">Completed</ng-container>
+                <ng-container *ngIf="order?.status === 4">Cancelled</ng-container>
+              </span>
+            </td>
+            <td>
+              <button class="view-btn" (click)="viewOrderDetails(order._id)">View Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class="no-orders" *ngIf="orders?.length === 0">
+      <p>No orders found</p>
+    </div>
+
+    <div class="row">
+      <div class="col pagination">
+      <button class="btn btn-outline-warning me-3" (click)="onPagination(false)">Previous</button>
+      <button  class="btn btn-outline-warning"  (click)="onPagination(true)">Next</button>
+      </div>
+    </div>
+  </div>
+</div>

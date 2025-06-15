@@ -197,6 +197,18 @@
   background: #218838;
 }
 
+.disable-checkout {
+  background-color: black;
+}
+.disable-checkout:hover {
+  background-color: black;
+}
+
+.note {
+  color:white;
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 768px) {
   .cart-content {
     grid-template-columns: 1fr;
